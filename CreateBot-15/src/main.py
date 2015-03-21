@@ -7,18 +7,24 @@ Created on Mar 17, 2015
 import kovan as link
 
 import actions as act
-import motor as m
 
 
 def main():
     act.init()
     
-    act.getOutOfStartBox()
+    act.driveToMesa()
+    #act.getOutOfStartBox()
     act.turnToMesa()
     act.driveToBlock()
-    m.grabBot()
-    act.driveAndReset()
+    act.grabBot()
+    '''act.driveAndReset()
     act.endDrive()
+    act.deliverBotgalOrPod()
+   # act.dumpBotgal()
+    act.dumpPod()
+    '''
+    
+    
     
     link.create_disconnect()
 #main
