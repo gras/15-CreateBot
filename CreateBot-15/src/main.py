@@ -11,20 +11,18 @@ import actions as act
 
 def main():
     act.init()
-    
-    act.driveToMesa()
-    #act.getOutOfStartBox()
+
+    act.driveToMesa() #using ET
+    #act.getOutOfStartBox() #using no sensors
     act.turnToMesa()
     act.driveToBlock()
     act.grabBot()
-    '''act.driveAndReset()
+    act.driveAndReset()
     act.endDrive()
     act.deliverBotgalOrPod()
-   # act.dumpBotgal()
-    act.dumpPod()
-    '''
-    
-    
+    act.checkForBotGalOrPod()
+    #act.dumpBotgal()
+    #act.dumpPod()
     
     link.create_disconnect()
 #main

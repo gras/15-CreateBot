@@ -13,6 +13,7 @@ import kovan as link
 import constants as c
 import drive
 import servo
+import sensor as s
 from constants import clonePort, armDown
 from kovan import analog_et
 
@@ -30,40 +31,42 @@ def init():
     #else
     
     link.create_connect()
+    link.camera_open() 
     
-    # preset servo positions
-    link.enable_servos()
-    servo.closeClaw()
     link.motor( c.razr, -30 )
     t.sleep (1.000)
     link.motor( c.razr, 0 )
-    link.set_servo_position( c.arm, c.armUp )
-    #wait_for_light
+
+    #insert wait_for_light here
+    
+    # preset servo positions
+    link.set_servo_position(c.arm, c.armDown)
+    link.set_servo_position(c.claw, c.clawClose)
+    link.enable_servos()
+    servo.moveArm(c.armSlightBack, 10)
 
 # drives forward to start box
 def getOutOfStartBox():
     drive.noStop( 100, 100, 2.0 )
     drive.noStop( 200, 200, 2.8 )
+    
+
+def driveToMesa():
+    drive.noStop( 100, 100, 2.0 )
+    drive.withStop( 200, 200, 3.3) #was 3.2
+    drive.noStop(-50, -50, 0)
+    while ( analog_et(5) > 350):
+        pass
+        #print analog_et(5)
+    print analog_et(5)
+    drive.withStop(-50, -50, 0.50) #.65
 
 # turns to the right so that the arm can sweep the mesa
 def turnToMesa():
     if c.isClone:
-        drive.withStop( -250, 250, 0.725 ) #was 0.725
+        drive.withStop( -250, 250, 0.735 ) #was 0.725
     else:
-        drive.withStop( -250, 250, 0.72 ) #was 0.740
-
-def driveToMesa():
-    drive.noStop( 100, 100, 2.0 )
-    drive.withStop( 200, 200, 3.0 ) #was 2.8
-    print analog_et(5)
-    drive.noStop(-50, -50, 0)
-    while ( analog_et(5) > 350):
-        print analog_et(5)
-    drive.withStop(-50, -50, .45)
-    
-
-    
-    
+        drive.withStop( -250, 250, 0.740 ) #was 0.740
 
 # sweeps part of the mesa
 def driveToBlock():
@@ -87,6 +90,9 @@ def grabBot():
     t.sleep(2.000 )
     link.motor( c.grabber, 0)
     link.motor( c.razr, 50 ) 
+    
+def checkForBotGalOrPod(): 
+    s.cameraTrack()
     
 # sweeps more of the mesa and stops to back up in order to change arm position
 def driveAndReset():
@@ -120,10 +126,6 @@ def deliverBotgalOrPod():
     drive.withStop(-100, -100, 2.500)
     drive.withStop(-50, 50, 4.00)
     servo.moveArm(armDown, 5 )
-    
-
-    
-    
     
 def dumpBotgal():
     drive.withStop(100, 100, 6.0)  
