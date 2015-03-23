@@ -114,7 +114,7 @@ def endDrive():
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 6.150 )
     servo.openClaw()
-    servo.moveArm(850, 10)
+    servo.moveArm( 850, 10 )
     drive.withStop( -100, -100, 0.700 ) #was 0.500
     drive.withStop( -100, -100, 2.000 ) #was 0.700
     servo.moveArm( c.armMesa, 5 )
