@@ -13,17 +13,22 @@ isClone = 0
 # servo ports
 arm = 3
 claw  = 1
+razr = 0
+
 
 # motor ports
-grabber = 2 #arm that is lifts the grabby thingy
-razr = 3
+grabber = 1 #arm that is lifts the grabby thingy
+
 
 # servo positions
 clawOpen = 0
 clawClose = 2000
 
+razrDown = 1950 
+razrUp = 170
+
 armDown = 1900
-armMesa = 1100
+armMesa = 1080
 armHeight = 780
 armMid = 600
 armUp = 510

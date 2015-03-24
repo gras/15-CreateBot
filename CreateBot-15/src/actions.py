@@ -33,15 +33,16 @@ def init():
     link.create_connect()
     link.camera_open() 
     
-    link.motor( c.razr, -30 )
-    t.sleep (1.000)
-    link.motor( c.razr, 0 )
+    #link.motor( c.razr, -30 )
+    #t.sleep (1.000)
+    #link.motor( c.razr, 0 )
 
     #insert wait_for_light here
     
     # preset servo positions
     link.set_servo_position(c.arm, c.armDown)
     link.set_servo_position(c.claw, c.clawClose)
+    link.set_servo_position(c.razr, c.razrDown ) 
     link.enable_servos()
     servo.moveArm(c.armSlightBack, 10)
 
@@ -80,16 +81,19 @@ def driveToBlock():
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
-    link.motor( c.grabber, -100 )
+    link.motor( c.grabber, 65 ) #was 100
     t.sleep( 1.000 )
     link.motor( c.grabber, 0 )
     t.sleep( 2.000 )
-    link.motor( c.razr, 100 )
+    servo.moveRazr(c.razrUp, 75)
+    #link.motor( c.razr, 100 )
     t.sleep( 2.000 )
-    link.motor( c.grabber, 100 )
+    link.motor( c.grabber, -100 )
     t.sleep(2.000 )
-    link.motor( c.grabber, 0)
-    link.motor( c.razr, 50 ) 
+    link.motor( c.grabber, -100)
+    #link.motor( c.razr, 50 ) 
+    servo.moveRazr(c.razrDown, 75)
+    
     
 def checkForBotGalOrPod(): 
     s.cameraTrack()
@@ -119,7 +123,7 @@ def endDrive():
     drive.withStop( -100, -100, 2.000 ) #was 0.700
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
-    drive.withStop( 100, 100, 2.500 ) #was 1.000
+    drive.withStop( 100, 100, 3.500 ) #was 1.000
     
 def deliverBotgalOrPod():
     servo.moveArm(850, 10)

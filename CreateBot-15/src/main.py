@@ -19,11 +19,11 @@ def main():
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
-    act.deliverBotgalOrPod()
+    '''act.deliverBotgalOrPod()
     act.checkForBotGalOrPod()
-    #act.dumpBotgal()
-    #act.dumpPod()
-    
+    act.dumpBotgal()
+    act.dumpPod()
+    '''
     link.create_disconnect()
 #main
 
