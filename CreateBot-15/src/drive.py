@@ -13,11 +13,11 @@ def noStop( rightSpeed, leftSpeed, driveTime ):
     # to allow smooth transitions to the next drive command
     link.create_drive_direct( -1 * rightSpeed, -1 * leftSpeed )
     t.sleep( driveTime )
-#noStop
+
 
 def withStop( rightSpeed, leftSpeed, driveTime ):
     link.create_drive_direct( -1 * rightSpeed, -1 * leftSpeed )
     t.sleep( driveTime )
     #link.ao()
     link.create_drive_direct( 0, 0 )
-#withStop
+

@@ -25,10 +25,8 @@ def init():
     print "Running My Create"
     if c.isClone:
         print "Running Clone"
-    #if
     else:
         print "Running Prime"
-    #else
     
     link.create_connect()
     link.camera_open() 
@@ -60,7 +58,11 @@ def driveToMesa():
         pass
         #print analog_et(5)
     print analog_et(5)
-    drive.withStop(-50, -50, 0.50) #.65
+    if c.isClone:
+        drive.withStop(-50, -50, 0.50) #.65
+    else:
+        drive.withStop(-50, -50, 1.0) #was 1.0
+        
 
 # turns to the right so that the arm can sweep the mesa
 def turnToMesa():
@@ -76,7 +78,10 @@ def driveToBlock():
     # nnnnnarmdset_servo_position( c.arm, c.armBackMesa )
     servo.moveArm( c.armBackMesa, 5 )
     #t.sleep( 1.500 )
-    drive.withStop( 100, 100, 1.800 )
+    if c.isClone:
+        drive.withStop( 100, 100, 2.1)
+    else:    
+        drive.withStop( 100, 100, 1.800 )
     # t.sleep( 5.000 ) # check and remove the block!
 
 # grabs BotGal and brings her down to the table (off the mesa)
@@ -85,7 +90,8 @@ def grabBot():
     t.sleep( 1.000 )
     link.motor( c.grabber, 0 )
     t.sleep( 2.000 )
-    servo.moveRazr(c.razrUp, 75)
+    servo.moveRazr(c.razrMid, 40)
+    servo.moveRazr(c.razrUp, 10)
     #link.motor( c.razr, 100 )
     t.sleep( 2.000 )
     link.motor( c.grabber, -100 )
@@ -93,7 +99,9 @@ def grabBot():
     link.motor( c.grabber, -100)
     #link.motor( c.razr, 50 ) 
     servo.moveRazr(c.razrDown, 75)
+   
     
+
     
 def checkForBotGalOrPod(): 
     s.cameraTrack()
@@ -118,6 +126,7 @@ def endDrive():
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 6.150 )
     servo.openClaw()
+    t.sleep(1.0)
     servo.moveArm( 850, 10 )
     drive.withStop( -100, -100, 0.700 ) #was 0.500
     drive.withStop( -100, -100, 2.000 ) #was 0.700
@@ -142,9 +151,12 @@ def dumpPod():
     link.motor( c.razr, -30 )
     t.sleep (1.000)
     
+def shutDown():
+    link.create_disconnect()
+    
 
 def DEBUG( msg = "DEBUG" ):
     print msg
     link.ao()
     exit()
-#DEBUG
+

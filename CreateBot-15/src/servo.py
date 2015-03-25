@@ -22,11 +22,11 @@ def moveArm( endPos, speed=10 ):
     
     link.set_servo_position( c.arm, endPos )
     t.sleep( 0.010 )
-#moveArm
+
 
 def openClaw():
     link.set_servo_position( c.claw, c.clawOpen )
-#openClaw
+
 
 def closeClaw():
     link.set_servo_position( c.claw, c.clawClose )
@@ -45,5 +45,4 @@ def moveRazr( endPos, speed=10):
     link.set_servo_position( c.razr, endPos )
     t.sleep( 0.010 )
    
-#move razr down
 
