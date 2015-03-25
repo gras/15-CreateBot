@@ -7,9 +7,6 @@ Created on Mar 17, 2015
 import kovan as link
 
 
-# globalconstants
-isClone = link.digital(15)
-
 # servo ports
 arm = 3
 claw  = 1
@@ -25,11 +22,10 @@ clawOpen = 0
 clawClose = 2000
 
 razrDown = 1950 
-razrUp = 120
-razrMid = 750
+razrUp = 170
 
 armDown = 1900
-armMesa = 1200
+armMesa = 1080
 armHeight = 780
 armMid = 600
 armUp = 510
@@ -49,7 +45,9 @@ ETport = 5
 # digital ports
 clonePort = 15 
 
-
+# hard code for now, but will be clone switch
+isClone = link.digital(15)
+        
 
 # define clone values here
 if isClone:
@@ -65,4 +63,3 @@ if isClone:
     armMidDown = 200 # for optimization
     armBackMesa = 40 # 30 before
     
-#isClone
