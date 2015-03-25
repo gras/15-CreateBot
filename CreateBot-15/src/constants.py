@@ -7,9 +7,6 @@ Created on Mar 17, 2015
 import kovan as link
 
 
-# globalconstants
-isClone = 0
-
 # servo ports
 arm = 3
 claw  = 1
@@ -66,4 +63,3 @@ if isClone:
     armMidDown = 200 # for optimization
     armBackMesa = 40 # 30 before
     
-#isClone
