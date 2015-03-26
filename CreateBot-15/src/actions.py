@@ -89,16 +89,21 @@ def grabBot():
     link.motor( c.grabber, 65 ) #was 100
     t.sleep( 1.000 )
     link.motor( c.grabber, 0 )
-    t.sleep( 2.000 )
+    #t.sleep( 1.000 )
     servo.moveRazr(c.razrMid, 40)
-    servo.moveRazr(c.razrUp, 10)
+    #t.sleep( 1.000 )
+    servo.moveRazr(c.razrUp, 5)
     #link.motor( c.razr, 100 )
-    t.sleep( 2.000 )
+    #t.sleep( 2.000 )
     link.motor( c.grabber, -100 )
-    t.sleep(2.000 )
-    link.motor( c.grabber, -100)
+    t.sleep( 2.000 )
+    #link.motor( c.grabber, -100)
     #link.motor( c.razr, 50 ) 
-    servo.moveRazr(c.razrDown, 75)
+    servo.moveRazr( c.razrStraightUp, 75)
+    servo.moveRazr( c.razrDown, 10)
+    #t.sleep( 0.500 )
+    
+    link.motor( c.grabber, -60 )
    
     
 
@@ -124,15 +129,15 @@ def driveAndReset():
 def endDrive():
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
-    drive.withStop( 100, 100, 6.150 )
+    drive.withStop( 100, 100, 6.500 )
     servo.openClaw()
     t.sleep(1.0)
     servo.moveArm( 850, 10 )
-    drive.withStop( -100, -100, 0.700 ) #was 0.500
-    drive.withStop( -100, -100, 2.000 ) #was 0.700
+    #drive.withStop( -100, -100, 0.700 ) #was 0.500
+    drive.withStop( -100, -100, 2.900 ) #was 0.700
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
-    drive.withStop( 100, 100, 3.500 ) #was 1.000
+    drive.withStop( 100, 100, 3.000 ) #was 1.000
     
 def deliverBotgalOrPod():
     servo.moveArm(850, 10)

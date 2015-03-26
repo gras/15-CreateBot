@@ -16,13 +16,13 @@ def main():
     act.turnToMesa()
     act.driveToBlock()
     act.grabBot()
-    act.DEBUG()
     act.driveAndReset()
     act.endDrive()
-    '''act.deliverBotgalOrPod()
+    act.deliverBotgalOrPod()
     act.checkForBotGalOrPod()
+    act.DEBUG()
     act.dumpBotgal()
-    act.dumpPod()'''
+    act.dumpPod()
     
     act.shutDown()
 

@@ -27,9 +27,10 @@ clawClose = 2000
 razrDown = 1950 
 razrUp = 120
 razrMid = 750
+razrStraightUp = 500
 
 armDown = 1900
-armMesa = 1200
+armMesa = 1080
 armHeight = 780
 armMid = 600
 armUp = 510
