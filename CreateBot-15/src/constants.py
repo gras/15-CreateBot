@@ -15,19 +15,18 @@ arm = 3
 claw  = 1
 razr = 0
 
-
 # motor ports
-grabber = 1 #arm that is lifts the grabby thingy
+grabber = 1 
 
 
 # servo positions
 clawOpen = 0
 clawClose = 2000
 
-razrDown = 1950 
-razrUp = 120
+razrDown = 1750 
+razrUp = 0
 razrMid = 750
-razrStraightUp = 500
+razrStraightUp = 400
 
 armDown = 1900
 armMesa = 1080
@@ -42,6 +41,9 @@ armBackMesa = 40 # 30 before
 blobSize = 750
 chanGreen = 0
 chanRed = 1
+seeRed = 1
+seeGreen = 2
+seeNot = 0
 
 # analog ports
 
@@ -58,7 +60,7 @@ if isClone:
     clawClose = 2000
     
     armDown = 1900
-    armMesa = 1050
+    armMesa = 1125
     armHeight = 780
     armMid = 600
     armUp = 550
@@ -66,4 +68,9 @@ if isClone:
     armMidDown = 200 # for optimization
     armBackMesa = 40 # 30 before
     
+    razrDown = 1750 
+    razrUp = 120
+    razrMid = 750
+    razrStraightUp = 400
+
 #isClone

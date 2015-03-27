@@ -109,7 +109,8 @@ def grabBot():
 
     
 def checkForBotGalOrPod(): 
-    s.cameraTrack()
+    return s.cameraTrack()
+    
     
 # sweeps more of the mesa and stops to back up in order to change arm position
 def driveAndReset():
@@ -147,13 +148,13 @@ def deliverBotgalOrPod():
     
 def dumpBotgal():
     drive.withStop(100, 100, 6.0)  
-    link.motor( c.razr, -30 )
+    link.motor( c.grabber, 100 )
     t.sleep (1.000)
     
 def dumpPod():
     #drive.withStop(-50, 50, 8.0)
     drive.withStop(-200, -200, 6.0)
-    link.motor( c.razr, -30 )
+    link.motor( c.grabber, 100 )
     t.sleep (1.000)
     
 def shutDown():

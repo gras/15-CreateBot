@@ -16,10 +16,11 @@ def cameraTrack() :
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
         print "green"
         print link.get_object_area( c.chanGreen, 0 )  
-        
+        return c.seeGreen
     elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize:
         print "red"
         print link.get_object_area( c.chanRed, 0 )
-        
+        return c.seeRed
     else:
         print "nothing found"
+        return c.seeNot

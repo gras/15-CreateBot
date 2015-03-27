@@ -6,6 +6,7 @@ Created on Mar 17, 2015
 
 
 import actions as act
+import constants as c
 
 
 def main():
@@ -19,11 +20,13 @@ def main():
     act.driveAndReset()
     act.endDrive()
     act.deliverBotgalOrPod()
-    act.checkForBotGalOrPod()
-    act.DEBUG()
-    act.dumpBotgal()
-    act.dumpPod()
     
+    if act.checkForBotGalOrPod() == c.seeGreen:
+        act.dumpPod()
+    elif act.checkForBotGalOrPod() == c.seeRed:
+        act.dumpBotgal()
+    else:
+        print "i see nothing"
     act.shutDown()
 
 
