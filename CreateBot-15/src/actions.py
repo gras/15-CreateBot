@@ -61,7 +61,7 @@ def driveToMesa():
     if c.isClone:
         drive.withStop(-50, -50, 0.50) #.65
     else:
-        drive.withStop(-50, -50, 1.0) #was 1.0
+        drive.withStop(-75, -75, 1.0) #was 1.0
         
 
 # turns to the right so that the arm can sweep the mesa
@@ -107,10 +107,10 @@ def grabBot():
    
     
 
-    
+    '''
 def checkForBotGalOrPod(): 
     return s.cameraTrack()
-    
+    '''
     
 # sweeps more of the mesa and stops to back up in order to change arm position
 def driveAndReset():
@@ -127,7 +127,10 @@ def driveAndReset():
     #link.set_servo_position( c.arm, c.armMesa )
 
 # sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin
+
+
 def endDrive():
+    print 'end drive'
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 6.500 )
@@ -140,6 +143,26 @@ def endDrive():
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 3.000 ) #was 1.000
     
+    
+    print 'end of endDrive'
+    
+    #t.sleep(7.0)
+    
+    
+    
+def checkColorAndDrive():
+    print 'check color and drive'
+    if s.checkForBotGalOrPod() == c.seeGreen:
+        print "dump pod"
+        #act.dumpPod()
+    elif s.checkForBotGalOrPod() == c.seeRed:
+        print "dump botgal"
+        #act.dumpBotgal()
+    else:
+        print "i see nothing,"
+        
+    
+
 def deliverBotgalOrPod():
     servo.moveArm(850, 10)
     drive.withStop(-100, -100, 2.500)

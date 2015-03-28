@@ -19,16 +19,15 @@ def main():
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
-    act.deliverBotgalOrPod()
+    act.checkColorAndDrive()
     
-    if act.checkForBotGalOrPod() == c.seeGreen:
-        act.dumpPod()
-    elif act.checkForBotGalOrPod() == c.seeRed:
-        act.dumpBotgal()
-    else:
-        print "i see nothing"
+    
+        
+        
     act.shutDown()
+    #act.deliverBotgalOrPod()
 
 
 if __name__ == "__main__":
     main()
+    #act.grabBot()

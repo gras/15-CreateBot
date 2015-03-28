@@ -7,7 +7,7 @@ import kovan as link
 import constants as c
 import time
 
-def cameraTrack() :
+def checkForBotGalOrPod() :
     print "cameraTrack"
     link.camera_update()
     link.camera_update()
