@@ -14,8 +14,6 @@ import constants as c
 import drive
 import servo
 import sensor as s
-from constants import clonePort, armDown
-from kovan import analog_et
 
 # sets up the claw and arm
 def init():
@@ -31,33 +29,21 @@ def init():
     link.create_connect()
     link.camera_open() 
     
-    #link.motor( c.razr, -30 )
-    #t.sleep (1.000)
-    #link.motor( c.razr, 0 )
-
     #insert wait_for_light here
     
     # preset servo positions
-    link.set_servo_position(c.arm, c.armDown)
-    link.set_servo_position(c.claw, c.clawClose)
-    link.set_servo_position(c.razr, c.razrDown ) 
-    link.enable_servos()
-    servo.moveArm(c.armSlightBack, 10)
-
-# drives forward to start box
-def getOutOfStartBox():
-    drive.noStop( 100, 100, 2.0 )
-    drive.noStop( 200, 200, 2.8 )
+    servo.initServos()
     
+
 
 def driveToMesa():
     drive.noStop( 100, 100, 2.0 )
     drive.withStop( 200, 200, 3.3) #was 3.2
     drive.noStop(-50, -50, 0)
-    while ( analog_et(5) > 350):
+    while ( link.analog_et(5) > 350):
         pass
         #print analog_et(5)
-    print analog_et(5)
+    print link.analog_et(5)
     if c.isClone:
         drive.withStop(-50, -50, 0.50) #.65
     else:
@@ -73,9 +59,6 @@ def turnToMesa():
 
 # sweeps part of the mesa
 def driveToBlock():
-    # link.set_servo_position( c.arm, c.armMidDown )
-    # t.sleep( 1.500 ) check again
-    # nnnnnarmdset_servo_position( c.arm, c.armBackMesa )
     servo.moveArm( c.armBackMesa, 5 )
     #t.sleep( 1.500 )
     if c.isClone:
@@ -92,17 +75,13 @@ def grabBot():
     #t.sleep( 1.000 )
     servo.moveRazr(c.razrMid, 40)
     #t.sleep( 1.000 )
-    servo.moveRazr(c.razrUp, 5)
-    #link.motor( c.razr, 100 )
-    #t.sleep( 2.000 )
-    link.motor( c.grabber, -100 )
-    t.sleep( 2.000 )
-    #link.motor( c.grabber, -100)
-    #link.motor( c.razr, 50 ) 
+    servo.moveRazr(c.razrUp, 5)    
+    #t.sleep( 1.000 )
+    link.motor( c.grabber, -80 ) #-100
+    t.sleep( 2.000 ) #2.000 
     servo.moveRazr( c.razrStraightUp, 75)
     servo.moveRazr( c.razrDown, 10)
     #t.sleep( 0.500 )
-    
     link.motor( c.grabber, -60 )
    
     
@@ -120,11 +99,6 @@ def driveAndReset():
     #t.sleep( 5.000 )
     drive.withStop( -100, -100, 6.400)
     # t.sleep( 2.000 )
-    
-    #link.set_servo_position( c.arm, c.armHeight )
-    #servo.moveArm( c.armHeight, 5 )
-    #t.sleep( 1.500 )
-    #link.set_servo_position( c.arm, c.armMesa )
 
 # sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin
 
@@ -142,8 +116,6 @@ def endDrive():
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 3.000 ) #was 1.000
-    
-    
     print 'end of endDrive'
     
     #t.sleep(7.0)
@@ -152,12 +124,15 @@ def endDrive():
     
 def checkColorAndDrive():
     print 'check color and drive'
-    if s.checkForBotGalOrPod() == c.seeGreen:
+    check = s.checkForBotGalOrPod()
+    print check
+    deliverBotgalOrPod()
+    if check == c.seeGreen:
         print "dump pod"
-        #act.dumpPod()
-    elif s.checkForBotGalOrPod() == c.seeRed:
+        dumpPod()
+    elif check == c.seeRed:
         print "dump botgal"
-        #act.dumpBotgal()
+        dumpBotgal()
     else:
         print "i see nothing,"
         
@@ -167,17 +142,21 @@ def deliverBotgalOrPod():
     servo.moveArm(850, 10)
     drive.withStop(-100, -100, 2.500)
     drive.withStop(-50, 50, 4.00)
-    servo.moveArm(armDown, 5 )
+    servo.moveArm(c.armDown, 5 )
     
 def dumpBotgal():
-    drive.withStop(100, 100, 6.0)  
+    #drive.withStop(100, 100, 6.0)
+    if c.isClone:
+        drive.withStop( 100, 100, 6.0)
+    else:    
+        drive.withStop( 100, 100, 7.0 )
     link.motor( c.grabber, 100 )
     t.sleep (1.000)
     
 def dumpPod():
     #drive.withStop(-50, 50, 8.0)
     drive.withStop(-200, -200, 6.0)
-    link.motor( c.grabber, 100 )
+    link.motor( c.grabber, 75 ) #was 100
     t.sleep (1.000)
     
 def shutDown():

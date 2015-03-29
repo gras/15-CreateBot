@@ -29,7 +29,7 @@ razrMid = 750
 razrStraightUp = 400
 
 armDown = 1900
-armMesa = 1080
+armMesa = 1150
 armHeight = 780
 armMid = 600
 armUp = 510
