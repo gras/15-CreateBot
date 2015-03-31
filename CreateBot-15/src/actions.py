@@ -14,6 +14,7 @@ import constants as c
 import drive
 import servo
 import sensor as s
+from constants import ETport, isClone
 
 # sets up the claw and arm
 def init():
@@ -40,14 +41,14 @@ def driveToMesa():
     drive.noStop( 100, 100, 2.0 )
     drive.withStop( 200, 200, 3.3) #was 3.2
     drive.noStop(-50, -50, 0)
-    while ( link.analog_et(5) > 350):
+    while ( link.analog_et(c.ETport) > 350):
         pass
         #print analog_et(5)
-    print link.analog_et(5)
+    print link.analog_et(c.ETport)
     if c.isClone:
-        drive.withStop(-50, -50, 0.50) #.65
+        drive.withStop(-50, -50, 0.55) #.65
     else:
-        drive.withStop(-75, -75, 1.0) #was 1.0
+        drive.withStop(-75, -75, 0.60) #was 1.0
         
 
 # turns to the right so that the arm can sweep the mesa
@@ -55,37 +56,29 @@ def turnToMesa():
     if c.isClone:
         drive.withStop( -250, 250, 0.735 ) #was 0.725
     else:
-        drive.withStop( -250, 250, 0.740 ) #was 0.740
+        drive.withStop( -250, 250, 0.750 ) #was 0.740
 
 # sweeps part of the mesa
 def driveToBlock():
     servo.moveArm( c.armBackMesa, 5 )
-    #t.sleep( 1.500 )
     if c.isClone:
         drive.withStop( 100, 100, 2.1)
     else:    
         drive.withStop( 100, 100, 1.800 )
-    # t.sleep( 5.000 ) # check and remove the block!
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
     link.motor( c.grabber, 65 ) #was 100
     t.sleep( 1.000 )
     link.motor( c.grabber, 0 )
-    #t.sleep( 1.000 )
     servo.moveRazr(c.razrMid, 40)
-    #t.sleep( 1.000 )
     servo.moveRazr(c.razrUp, 5)    
-    #t.sleep( 1.000 )
     link.motor( c.grabber, -80 ) #-100
     t.sleep( 2.000 ) #2.000 
     servo.moveRazr( c.razrStraightUp, 75)
     servo.moveRazr( c.razrDown, 10)
-    #t.sleep( 0.500 )
     link.motor( c.grabber, -60 )
    
-    
-
     '''
 def checkForBotGalOrPod(): 
     return s.cameraTrack()
@@ -94,32 +87,24 @@ def checkForBotGalOrPod():
 # sweeps more of the mesa and stops to back up in order to change arm position
 def driveAndReset():
     drive.withStop( 100, 100, 3.450 )
-    drive.withStop( -100, -100, 0.250 )  
+    drive.withStop( -100, -100, 0.250 )
     servo.moveArm( c.armUp, 5)
-    #t.sleep( 5.000 )
     drive.withStop( -100, -100, 6.400)
-    # t.sleep( 2.000 )
 
 # sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin
-
-
 def endDrive():
     print 'end drive'
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 6.500 )
-    servo.openClaw()
+    servo.openClaw() #dump blocks
     t.sleep(1.0)
     servo.moveArm( 850, 10 )
-    #drive.withStop( -100, -100, 0.700 ) #was 0.500
-    drive.withStop( -100, -100, 2.900 ) #was 0.700
+    drive.withStop( -100, -100, 5.200 ) #was 2.900
     servo.moveArm( c.armMesa, 5 )
     t.sleep( 1.500 )
-    drive.withStop( 100, 100, 3.000 ) #was 1.000
-    print 'end of endDrive'
-    
-    #t.sleep(7.0)
-    
+    drive.withStop( 100, 100, 5.300 ) #was 3.000
+    print 'end of endDrive'   
     
     
 def checkColorAndDrive():
@@ -154,8 +139,11 @@ def dumpBotgal():
     t.sleep (1.000)
     
 def dumpPod():
-    #drive.withStop(-50, 50, 8.0)
-    drive.withStop(-200, -200, 6.0)
+    drive.noStop(-300,-300,0)
+    #drive.withStop(-200, -200, 6.0)
+    while not link.get_create_rbump() and not link.get_create_lbump():
+        pass
+    drive.noStop(0,0,0)
     link.motor( c.grabber, 75 ) #was 100
     t.sleep (1.000)
     
