@@ -14,7 +14,6 @@ import constants as c
 import drive
 import servo
 import sensor as s
-from constants import ETport, isClone
 
 # sets up the claw and arm
 def init():
@@ -34,7 +33,6 @@ def init():
     
     # preset servo positions
     servo.initServos()
-    
 
 
 def driveToMesa():
@@ -68,16 +66,16 @@ def driveToBlock():
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
-    link.motor( c.grabber, 65 ) #was 100
+    servo.openGrabber()#opening grabber
     t.sleep( 1.000 )
-    link.motor( c.grabber, 0 )
-    servo.moveRazr(c.razrMid, 40)
-    servo.moveRazr(c.razrUp, 5)    
-    link.motor( c.grabber, -80 ) #-100
-    t.sleep( 2.000 ) #2.000 
-    servo.moveRazr( c.razrStraightUp, 75)
+    servo.moveRazr( c.razrUp, 10)
+    t.sleep( 1.000 )
+    servo.closeGrabber()
+    t.sleep(1.000 )
+    servo.moveRazr( c.razrMid, 2000)
+    t.sleep( 1.000)
     servo.moveRazr( c.razrDown, 10)
-    link.motor( c.grabber, -60 )
+    link.disable_servo( c.razr)
    
     '''
 def checkForBotGalOrPod(): 
@@ -120,8 +118,7 @@ def checkColorAndDrive():
         dumpBotgal()
     else:
         print "i see nothing,"
-        
-    
+   
 
 def deliverBotgalOrPod():
     servo.moveArm(850, 10)
@@ -135,7 +132,7 @@ def dumpBotgal():
         drive.withStop( 100, 100, 6.0)
     else:    
         drive.withStop( 100, 100, 7.0 )
-    link.motor( c.grabber, 100 )
+    servo.openGrabber()
     t.sleep (1.000)
     
 def dumpPod():
@@ -144,7 +141,7 @@ def dumpPod():
     while not link.get_create_rbump() and not link.get_create_lbump():
         pass
     drive.noStop(0,0,0)
-    link.motor( c.grabber, 75 ) #was 100
+    servo.openGrabber()
     t.sleep (1.000)
     
 def shutDown():
