@@ -11,22 +11,20 @@ import kovan as link
 isClone = link.digital(15)
 
 # servo ports
-arm = 3
-claw  = 1
 razr = 0
-
-# motor ports
-grabber = 1 
+claw  = 1
+grabber = 2 #claw that will grab botgal or pod
+arm = 3
 
 
 # servo positions
 clawOpen = 0
 clawClose = 2000
 
-razrDown = 1750 
 razrUp = 0
-razrMid = 750
 razrStraightUp = 400
+razrMid = 750
+razrDown = 1750
 
 armDown = 1800 #1900
 armMesa = 1150
@@ -35,15 +33,18 @@ armMid = 600
 armUp = 510
 armSlightBack = 450
 armMidDown = 200 # for optimization
-armBackMesa = 40 # 30 before
+armBackMesa = 0 # 30 before
+
+grabberClosed = 200
+grabberOpen = 1600
 
 #camera constants
 blobSize = 750
 chanGreen = 0
 chanRed = 1
+seeNot = 0
 seeRed = 1
 seeGreen = 2
-seeNot = 0
 
 # analog ports
 
@@ -68,9 +69,9 @@ if isClone:
     armMidDown = 200 # for optimization
     armBackMesa = 40 # 30 before
     
-    razrDown = 1750 
     razrUp = 120
-    razrMid = 750
     razrStraightUp = 400
+    razrMid = 750
+    razrDown = 1750 
 
 #isClone

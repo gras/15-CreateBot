@@ -21,10 +21,9 @@ def main():
     #act.deliverBotgalOrPod()
     act.checkColorAndDrive()
     
-    
-        
         
     act.shutDown()
+    #act.DEBUG("Done")
     
 
 
