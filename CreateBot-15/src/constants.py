@@ -33,7 +33,7 @@ armMid = 600
 armUp = 510
 armSlightBack = 450
 armMidDown = 200 # for optimization
-armBackMesa = 40 # 30 before
+armBackMesa = 0 # 30 before
 
 grabberClosed = 200
 grabberOpen = 1600

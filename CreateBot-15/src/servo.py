@@ -46,6 +46,17 @@ def openGrabber():
 def closeGrabber():
     link.set_servo_position( c.grabber, c.grabberClosed)
 
+def moveGrabber( endPos, speed=10 ):
+    now = link.get_servo_position( c.grabber )
+    if now > endPos:
+        speed = -speed
+    #if
+    
+    for i in range ( now, endPos, speed ):
+        link.set_servo_position( c.grabber, i )
+        t.sleep( 0.010 )
+    #for
+
 def moveRazr( endPos, speed=10):
     now = link.get_servo_position( c.razr )
     if now > endPos:

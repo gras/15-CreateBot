@@ -46,7 +46,7 @@ def driveToMesa():
     if c.isClone:
         drive.withStop(-50, -50, 0.55) #.65
     else:
-        drive.withStop(-75, -75, 0.60) #was 1.0
+        drive.withStop(-75, -75, 0.65) #was 1.0 then 0.60
         
 
 # turns to the right so that the arm can sweep the mesa
@@ -54,7 +54,7 @@ def turnToMesa():
     if c.isClone:
         drive.withStop( -250, 250, 0.735 ) #was 0.725
     else:
-        drive.withStop( -250, 250, 0.750 ) #was 0.740
+        drive.withStop( -250, 250, 0.750 ) #was 0.770
 
 # sweeps part of the mesa
 def driveToBlock():
@@ -126,22 +126,22 @@ def deliverBotgalOrPod():
     drive.withStop(-50, 50, 4.00)
     servo.moveArm(c.armDown, 5 )
     
-def dumpBotgal():
+def dumpPod():
     #drive.withStop(100, 100, 6.0)
     if c.isClone:
         drive.withStop( 100, 100, 6.0)
     else:    
         drive.withStop( 100, 100, 7.0 )
-    servo.openGrabber()
+    servo.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
     
-def dumpPod():
+def dumpBotgal():
     drive.noStop(-300,-300,0)
     #drive.withStop(-200, -200, 6.0)
     while not link.get_create_rbump() and not link.get_create_lbump():
         pass
     drive.noStop(0,0,0)
-    servo.openGrabber()
+    servo.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
     
 def shutDown():
