@@ -21,10 +21,12 @@ def init():
     sys.stdout = os.fdopen( sys.stdout.fileno(), 'w', 0 )
     
     print "Running My Create"
-    if c.isClone:
-        print "Running Clone"
-    else:
+    
+       
+    if c.isPrime:
         print "Running Prime"
+    else:
+        print "Running Clone"
     
     link.create_connect()
     link.camera_open() 
@@ -43,40 +45,56 @@ def driveToMesa():
         pass
         #print analog_et(5)
     print link.analog_et(c.ETport)
-    if c.isClone:
-        drive.withStop(-50, -50, 0.55) #.65
-    else:
+    if c.isPrime:
         drive.withStop(-75, -75, 0.65) #was 1.0 then 0.60
+    else:
+        drive.withStop(-50, -50, 0.45) #.65
         
 
 # turns to the right so that the arm can sweep the mesa
 def turnToMesa():
-    if c.isClone:
-        drive.withStop( -250, 250, 0.735 ) #was 0.725
-    else:
+    if c.isPrime:
         drive.withStop( -250, 250, 0.750 ) #was 0.770
+    else:
+        drive.withStop( -250, 250, 0.735 ) #was 0.725
 
-# sweeps part of the mesa
+# sweeps part of the mesa. drives to the pod or botgal
 def driveToBlock():
     servo.moveArm( c.armBackMesa, 5 )
-    if c.isClone:
-        drive.withStop( 100, 100, 2.1)
-    else:    
+    if c.isPrime:
         drive.withStop( 100, 100, 1.800 )
+    else:    
+        drive.withStop( 100, 100, 2.1)
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
     servo.openGrabber()#opening grabber
     t.sleep( 1.000 )
-    servo.moveRazr( c.razrUp, 10)
-    t.sleep( 1.000 )
+    
+    # reverting razr to a motor
+    link.motor(c.razr, -100)
+    t.sleep(1.0)
+    link.motor(c.razr, 0)
+    t.sleep(1.0)
+    
+    # using razr as a servo
+    #servo.moveRazr( c.razrUp, 10)
+    #t.sleep( 1.000 )
+    
     servo.closeGrabber()
     t.sleep(1.000 )
-    servo.moveRazr( c.razrMid, 2000)
-    t.sleep( 1.000)
-    servo.moveRazr( c.razrDown, 10)
-    link.disable_servo( c.razr)
-   
+    
+    # using razr as a servo
+    #servo.moveRazr( c.razrMid, 2000)
+    #t.sleep( 1.000)
+    #ervo.moveRazr( c.razrDown, 10)
+    #link.disable_servo( c.razr)
+    
+    #using razr as a motor    
+    link.motor( c.razr, 100 )
+    t.sleep(2.5)
+    link.motor( c.razr, 0 )
+    DEBUG() 
     '''
 def checkForBotGalOrPod(): 
     return s.cameraTrack()
@@ -128,10 +146,10 @@ def deliverBotgalOrPod():
     
 def dumpPod():
     #drive.withStop(100, 100, 6.0)
-    if c.isClone:
-        drive.withStop( 100, 100, 6.0)
-    else:    
+    if c.isPrime:
         drive.withStop( 100, 100, 7.0 )
+    else:    
+        drive.withStop( 100, 100, 6.0)
     servo.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
     

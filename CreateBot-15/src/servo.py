@@ -13,12 +13,18 @@ def initServos():
     link.enable_servos()
     link.set_servo_position(c.claw, c.clawClose)
     link.set_servo_position(c.grabber, c.grabberClosed)
-    link.set_servo_position(c.razr, c.razrMid )
-    link.set_servo_position(c.razr, c.razrDown )
+    #link.set_servo_position(c.razr, c.razrMid )
+    #link.set_servo_position(c.razr, c.razrDown )
+    
+    """ UNCOMMENT THESE FOR TESTING FROM START BOX. THESE ARE COMMENTED TO TEST
+        GRABBING BOT GAL WITH RAZR REVERTED TO A MOTOR.
+    
+    
     link.set_servo_position(c.arm, c.armDown - 20)
     t.sleep(1)
     link.set_servo_position(c.arm, c.armDown) 
     moveArm(c.armSlightBack, 10)
+    """
 
 def moveArm( endPos, speed=10 ):
     now = link.get_servo_position( c.arm )

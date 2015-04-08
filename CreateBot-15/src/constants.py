@@ -9,13 +9,13 @@ import kovan as link
 
 # globalconstants
 isClone = link.digital(15)
+isPrime = not isClone
 
 # servo ports
-razr = 0
+#razr = 0
 claw  = 1
 grabber = 2 #claw that will grab botgal or pod
 arm = 3
-
 
 # servo positions
 clawOpen = 0
@@ -35,8 +35,11 @@ armSlightBack = 450
 armMidDown = 200 # for optimization
 armBackMesa = 0 # 30 before
 
-grabberClosed = 200
+grabberClosed = 150
 grabberOpen = 1600
+
+#motor ports
+razr = 0
 
 #camera constants
 blobSize = 750
