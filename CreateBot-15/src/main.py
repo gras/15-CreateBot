@@ -12,14 +12,15 @@ import actions as act
 def main():
     act.init()
     #READ INITSERVOS IN THE SERVO FILE
-
-    #act.driveToMesa() #using ET
-    #act.turnToMesa()
-    #act.driveToBlock()
+    act.DEBUG()
+    act.driveToMesa() #using ET
+    act.turnToMesa()
+    act.driveToBlock()
     act.grabBot()
+    
     act.driveAndReset()
     act.endDrive()
-    #act.deliverBotgalOrPod()
+    act.deliverBotgalOrPod()
     act.checkColorAndDrive()
     
         
