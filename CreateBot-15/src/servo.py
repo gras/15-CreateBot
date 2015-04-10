@@ -8,7 +8,9 @@ import kovan as link
 
 import constants as c
 import time as t
-from constants import grabberClosed
+#from constants import grabberClosed
+import actions as act 
+
 
 def initServos():
     cubeHolderArmDown()
@@ -22,8 +24,12 @@ def initServos():
     closecubeHolder()
     t.sleep(1)#was.4
     print "testing cubeHolderArm"
-    cubeHolderArmUp()
+    cubeHolderArmSlightBack()
     t.sleep(1)
+    if link.analog_et(c.ETport) > 350:
+        act.DEBUG("et sensor test failed: cubeArmHolder in the way")
+    else:
+        print "et sensor test passed"
     cubeHolderArmDown()
     t.sleep(1)
     print "testing grabber"
@@ -33,9 +39,9 @@ def initServos():
     t.sleep(1)#was.4
     print "testing grabberArm"
     grabberArmUp()
-    t.sleep(1)
+    t.sleep(.5) #was 1
     grabberArmDown()
-    t.sleep(1)
+    t.sleep(3)
     #link.set_servo_position(c.grabberArm, c.grabberArmMid )
     #link.set_servo_position(c.grabberArm, c.grabberArmDown )
     
@@ -101,15 +107,28 @@ def movegrabberArm( endPos, speed=10):
     t.sleep( 0.010 )
    
 def cubeHolderArmDown():
-    #link.set_servo_position(c.cubeHolderArm, 2047)
     movecubeHolderArm( 2047, 10)
     
 def cubeHolderArmUp():
-    #link.set_servo_position( c.cubeHolderArm, c.cubeHolderArmDown )
-    movecubeHolderArm( c.cubeHolderArmUp, 15)
+    movecubeHolderArm( c.cubeHolderArmUp, 5)
+    
+def cubeHolderArmSlightBack():
+    movecubeHolderArm( c.cubeHolderArmSlightBack, 10)
+    
+def cubeHolderArmBackMesa():
+    movecubeHolderArm( c.cubeHolderArmBackMesa, 5)
+    
+def cubeHolderArmMid():
+    movecubeHolderArm( c.cubeHolderArmMid, 10)
+    
+def cubeHolderArmMesa():
+    movecubeHolderArm( c.cubeHolderArmMesa, 5)
     
 def grabberArmUp():
-    movegrabberArm( c.grabberArmMid, 10 )
+    movegrabberArm( c.grabberArmUp, 10 )
     
 def grabberArmDown():
-    movegrabberArm( 2047, 10 )
+    movegrabberArm( c.grabberArmDown, 10 )
+    
+def grabberArmDrop():
+    movegrabberArm( c.grabberArmDrop, 10 )

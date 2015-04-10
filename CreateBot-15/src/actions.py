@@ -28,6 +28,7 @@ def init():
     else:
         print "Running Clone"
     
+    print "Connecting To Create..."
     link.create_connect()
     link.camera_open() 
     
@@ -39,9 +40,10 @@ def init():
 
 
 def driveToMesa():
+    print "driveToMesa"
+    servo.cubeHolderArmSlightBack()
     drive.noStop( 100, 100, 2.0 )
-    servo.movecubeHolderArm(c.cubeHolderArmUp, 20)
-    drive.withStop( 200, 200, 3.3) #was 3.2
+    drive.withStop( 200, 200, 3.5) #was 3.3
     drive.noStop(-50, -50, 0)
     while ( link.analog_et(c.ETport) > 350):
         pass
@@ -55,6 +57,7 @@ def driveToMesa():
 
 # turns to the right so that the cubeHolderArm can sweep the mesa
 def turnToMesa():
+    print "turnToMesa"
     if c.isPrime:
         drive.withStop( -250, 250, 0.750 ) #was 0.770
     else:
@@ -62,7 +65,8 @@ def turnToMesa():
 
 # sweeps part of the mesa. drives to the pod or botgal
 def driveToBlock():
-    servo.movecubeHolderArm( c.cubeHolderArmBackMesa, 5 )
+    print "driveToBlock"
+    servo.cubeHolderArmBackMesa()
     if c.isPrime:
         drive.withStop( 100, 100, 1.800 )
     else:    
@@ -70,18 +74,19 @@ def driveToBlock():
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
+    print "grabBot"
     servo.openGrabber()#opening grabber
     t.sleep( 1.000 )
     
     # reverting grabberArm to a motor
-    link.motor(c.grabberArm, -100)
+    '''link.motor(c.grabberArm, -100)
     t.sleep(1.0)
     link.motor(c.grabberArm, 0)
     t.sleep(1.0)
-    
-    # using grabberArm as a servo
-    #servo.movegrabberArm( c.grabberArmUp, 10)
-    #t.sleep( 1.000 )
+    '''
+    #using grabberArm as a servo
+    servo.grabberArmUp()
+    t.sleep( 1.000 )
     
     servo.closeGrabber()
     t.sleep(1.000 )
@@ -89,47 +94,48 @@ def grabBot():
     # using grabberArm as a servo
     #servo.movegrabberArm( c.grabberArmMid, 2000)
     #t.sleep( 1.000)
-    #ervo.movegrabberArm( c.grabberArmDown, 10)
-    #link.disable_servo( c.grabberArm)
+    servo.grabberArmDrop()
+    link.disable_servo( c.grabberArm)
     
     #using grabberArm as a motor    
-    link.motor( c.grabberArm, 100 )
+    '''link.motor( c.grabberArm, 100 )
     t.sleep(2.5)
     link.motor( c.grabberArm, 0 )
-    DEBUG() 
+    '''
     '''
 def checkForBotGalOrPod(): 
     return s.cameraTrack()
-    '''
+     '''
     
 # sweeps more of the mesa and stops to back up in order to change cubeHolderArm position
 def driveAndReset():
+    print "driveAndReset"
     drive.withStop( 100, 100, 3.450 )
     drive.withStop( -100, -100, 0.250 )
-    servo.movecubeHolderArm( c.cubeHolderArmUp, 5)
+    servo.cubeHolderArmUp()
     drive.withStop( -100, -100, 6.400)
 
 # sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin
 def endDrive():
-    print 'end drive'
-    servo.movecubeHolderArm( c.cubeHolderArmMesa, 5 )
+    print "endDrive"
+    servo.cubeHolderArmMesa()
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 6.500 )
     servo.opencubeHolder() #dump blocks
     t.sleep(1.0)
-    servo.movecubeHolderArm( 850, 10 )
+    servo.cubeHolderArmMid()
     drive.withStop( -100, -100, 5.200 ) #was 2.900
-    servo.movecubeHolderArm( c.cubeHolderArmMesa, 5 )
+    servo.cubeHolderArmMesa()
     t.sleep( 1.500 )
     drive.withStop( 100, 100, 5.300 ) #was 3.000
-    print 'end of endDrive'   
+      
     
     
 def checkColorAndDrive():
-    print 'check color and drive'
+    print "checkColorAndDrive"
     check = s.checkForBotGalOrPod()
     print check
-    deliverBotgalOrPod()
+    #deliverBotgalOrPod()
     if check == c.seeGreen:
         print "dump pod"
         dumpPod()
@@ -139,15 +145,20 @@ def checkColorAndDrive():
     else:
         print "i see nothing,"
    
-
+'''
 def deliverBotgalOrPod():
+    print "deliverBotgalOrPod"
     servo.movecubeHolderArm(850, 10)
     drive.withStop(-100, -100, 2.500)
     drive.withStop(-50, 50, 4.00)
     servo.movecubeHolderArm(c.cubeHolderArmDown, 5 )
-    
+    '''
 def dumpPod():
     #drive.withStop(100, 100, 6.0)
+    servo.cubeHolderArmMid()
+    drive.withStop(-100, -100, 2.500)
+    drive.withStop(-50, 50, 4.00)
+    servo.cubeHolderArmDown()
     if c.isPrime:
         drive.withStop( 100, 100, 7.0 )
     else:    
@@ -156,6 +167,10 @@ def dumpPod():
     t.sleep (1.000)
     
 def dumpBotgal():
+    servo.cubeHolderArmMid()
+    drive.withStop(-100, -100, 2.500)
+    drive.withStop(-50, 50, 4.00)
+    servo.cubeHolderArmDown()
     drive.noStop(-300,-300,0)
     #drive.withStop(-200, -200, 6.0)
     while not link.get_create_rbump() and not link.get_create_lbump():
