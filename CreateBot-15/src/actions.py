@@ -33,7 +33,6 @@ def init():
     link.camera_open() 
     
     #insert wait_for_light here
-    
     # preset servo positions
     servo.initServos()
     
@@ -61,7 +60,7 @@ def turnToMesa():
     if c.isPrime:
         drive.withStop( -250, 250, 0.750 ) #was 0.770
     else:
-        drive.withStop( -250, 250, 0.735 ) #was 0.725
+        drive.withStop( -250, 250, 0.785 ) #was 0.725
 
 # sweeps part of the mesa. drives to the pod or botgal
 def driveToBlock():
@@ -144,6 +143,7 @@ def checkColorAndDrive():
         dumpBotgal()
     else:
         print "i see nothing,"
+    
    
 '''
 def deliverBotgalOrPod():

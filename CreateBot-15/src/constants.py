@@ -19,21 +19,22 @@ cubeHolderArm = 3
 
 # servo positions
 cubeHolderOpen = 650
-cubeHolderClose = 1550
+cubeHolderClose = 1650
 
 grabberArmUp = 200 #was 250
 grabberArmStraightUp = 550
 grabberArmDrop = 1000
 grabberArmDown = 2000 #was 1750
 
+cubeHolderArmCompleteDown = 1955
 cubeHolderArmDown = 1800 #1900
 cubeHolderArmMesa = 1100 #was 1150
-#cubeHolderArmHeight = 780
 cubeHolderArmMid = 850
 cubeHolderArmUp = 510
 cubeHolderArmSlightBack = 350
 cubeHolderArmMidDown = 200 # for optimization
 cubeHolderArmBackMesa = 0 # 30 before
+
 
 grabberClosed = 150
 grabberOpen = 1600
@@ -63,9 +64,9 @@ if isClone:
     cubeHolderOpen = 0
     cubeHolderClose = 2000
     
+    cubeHolderArmCompleteDown = 2047
     cubeHolderArmDown = 1900
-    cubeHolderArmMesa = 1125
-    cubeHolderArmHeight = 780
+    cubeHolderArmMesa = 1110
     cubeHolderArmMid = 600
     cubeHolderArmUp = 550
     cubeHolderArmSlightBack = 450

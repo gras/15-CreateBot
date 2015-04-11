@@ -13,10 +13,10 @@ import actions as act
 
 
 def initServos():
-    cubeHolderArmDown()
-    openGrabber()
+    link.set_servo_position( c.cubeHolderArm, c.cubeHolderArmCompleteDown)
     closecubeHolder()
-    grabberArmDown()
+    openGrabber()
+    link.set_servo_position( c.grabberArm, c.grabberArmDown)
     link.enable_servos()
     print "testing cubeHolder"
     opencubeHolder()
@@ -30,7 +30,7 @@ def initServos():
         act.DEBUG("et sensor test failed: cubeArmHolder in the way")
     else:
         print "et sensor test passed"
-    cubeHolderArmDown()
+    cubeHolderArmCompleteDown()
     t.sleep(1)
     print "testing grabber"
     closeGrabber()
@@ -106,8 +106,11 @@ def movegrabberArm( endPos, speed=10):
     link.set_servo_position( c.grabberArm, endPos )
     t.sleep( 0.010 )
    
+def cubeHolderArmCompleteDown():
+    movecubeHolderArm( c.cubeHolderArmCompleteDown, 10)
+    
 def cubeHolderArmDown():
-    movecubeHolderArm( 2047, 10)
+    movecubeHolderArm( c.cubeHolderArmDown, 10)
     
 def cubeHolderArmUp():
     movecubeHolderArm( c.cubeHolderArmUp, 5)
