@@ -32,18 +32,26 @@ def initServos():
         print "et sensor test passed"
     cubeHolderArmCompleteDown()
     t.sleep(1)
+    link.disable_servo(c.cubeHolderArm)
+    print "testing grabberArm"
+    grabberArmUp()
+    t.sleep(.5) #was 1
     print "testing grabber"
     closeGrabber()
     t.sleep(1)
     openGrabber()
     t.sleep(1)#was.4
-    print "testing grabberArm"
-    grabberArmUp()
-    t.sleep(.5) #was 1
     grabberArmDown()
-    t.sleep(3)
+    link.disable_servo(c.grabberArm)
+    
+   # t.sleep(3)
+    
+    link.enable_servo(c.grabberArm)
+    link.enable_servo(c.cubeHolderArm)
     #link.set_servo_position(c.grabberArm, c.grabberArmMid )
     #link.set_servo_position(c.grabberArm, c.grabberArmDown )
+    
+
     
     """ UNCOMMENT THESE FOR TESTING FROM START BOX. THESE ARE COMMENTED TO TEST
         GRABBING BOT GAL WITH grabberArm REVERTED TO A MOTOR.

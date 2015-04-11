@@ -19,13 +19,12 @@ def main():
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
-    #act.deliverBotgalOrPod()
+    act.waitForLego(20)
     act.checkColorAndDrive()
     
     
         
     act.shutDown()
-    #act.DEBUG("Done")
     
 
 

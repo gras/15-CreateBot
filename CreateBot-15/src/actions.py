@@ -35,7 +35,10 @@ def init():
     #insert wait_for_light here
     # preset servo positions
     servo.initServos()
-    
+    print "Press the A button to start"
+    while not link.a_button():
+        pass
+    print "Starting run..."    
 
 
 def driveToMesa():
@@ -58,9 +61,17 @@ def driveToMesa():
 def turnToMesa():
     print "turnToMesa"
     if c.isPrime:
-        drive.withStop( -250, 250, 0.750 ) #was 0.770
+        drive.withStop( -250, 250, 0.745 ) #was 0.770
     else:
-        drive.withStop( -250, 250, 0.785 ) #was 0.725
+        drive.withStop( -250, 250, 0.750 ) #was 0.725
+        
+def waitForLego(x):
+    print "waitForLego"
+#    link.disable_servo(c.grabberArm)
+    link.disable_servo(c.cubeHolderArm)
+    t.sleep(x)
+#    link.enable_servo(c.grabberArm)
+    link.enable_servo(c.cubeHolderArm)
 
 # sweeps part of the mesa. drives to the pod or botgal
 def driveToBlock():
@@ -109,7 +120,7 @@ def checkForBotGalOrPod():
 # sweeps more of the mesa and stops to back up in order to change cubeHolderArm position
 def driveAndReset():
     print "driveAndReset"
-    drive.withStop( 100, 100, 3.450 )
+    drive.withStop( 100, 100, 3.450 ) #was 102,100
     drive.withStop( -100, -100, 0.250 )
     servo.cubeHolderArmUp()
     drive.withStop( -100, -100, 6.400)
@@ -119,15 +130,26 @@ def endDrive():
     print "endDrive"
     servo.cubeHolderArmMesa()
     t.sleep( 1.500 )
-    drive.withStop( 100, 100, 6.500 )
-    servo.opencubeHolder() #dump blocks
-    t.sleep(1.0)
-    servo.cubeHolderArmMid()
-    drive.withStop( -100, -100, 5.200 ) #was 2.900
-    servo.cubeHolderArmMesa()
-    t.sleep( 1.500 )
-    drive.withStop( 100, 100, 5.300 ) #was 3.000
-      
+    if c.isPrime:
+        drive.withStop( 102, 100, 6.500 ) #was 100,100
+        servo.opencubeHolder() #dump blocks
+        t.sleep(1.0)
+        servo.cubeHolderArmMid()
+        drive.withStop( -100, -100, 5.200 ) #was 2.900
+        servo.cubeHolderArmMesa()
+        t.sleep( 1.500 )
+        drive.withStop( 100, 100, 5.300 )  #was 100,100
+    else:
+        drive.withStop( 102, 100, 6.500 ) #was 100,100
+        servo.opencubeHolder() #dump blocks
+        t.sleep(1.0)
+        servo.cubeHolderArmMid()
+        drive.withStop( -100, -100, 5.200 ) #was 2.900
+        servo.cubeHolderArmMesa()
+        t.sleep( 1.500 )
+        drive.withStop( 103, 100, 5.300 )  #was 100,100
+          
+          
     
     
 def checkColorAndDrive():
@@ -159,6 +181,7 @@ def dumpPod():
     drive.withStop(-100, -100, 2.500)
     drive.withStop(-50, 50, 4.00)
     servo.cubeHolderArmDown()
+    t.sleep(10) #wait for lego
     if c.isPrime:
         drive.withStop( 100, 100, 7.0 )
     else:    
@@ -168,13 +191,14 @@ def dumpPod():
     
 def dumpBotgal():
     servo.cubeHolderArmMid()
-    drive.withStop(-100, -100, 2.500)
+    drive.withStop(-100, -100, 4.50)# 2.500
     drive.withStop(-50, 50, 4.00)
     servo.cubeHolderArmDown()
-    drive.noStop(-300,-300,0)
-    #drive.withStop(-200, -200, 6.0)
-    while not link.get_create_rbump() and not link.get_create_lbump():
-        pass
+    #drive.noStop(-300,-300,0)
+    drive.withStop(-200, -200, 4.5)#was 4.0
+    #while not link.get_create_rbump() and not link.get_create_lbump():
+    #    pass
+    drive.withStop(-100, 100, 1.75)#1.5
     drive.noStop(0,0,0)
     servo.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
