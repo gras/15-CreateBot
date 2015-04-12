@@ -41,27 +41,10 @@ def initServos():
     t.sleep(1)
     openGrabber()
     t.sleep(1)#was.4
+    link.disable_servo(c.grabber)
     grabberArmDown()
     link.disable_servo(c.grabberArm)
     
-   # t.sleep(3)
-    
-    link.enable_servo(c.grabberArm)
-    link.enable_servo(c.cubeHolderArm)
-    #link.set_servo_position(c.grabberArm, c.grabberArmMid )
-    #link.set_servo_position(c.grabberArm, c.grabberArmDown )
-    
-
-    
-    """ UNCOMMENT THESE FOR TESTING FROM START BOX. THESE ARE COMMENTED TO TEST
-        GRABBING BOT GAL WITH grabberArm REVERTED TO A MOTOR.
-    
-    
-    link.set_servo_position(c.cubeHolderArm, c.cubeHolderArmDown - 20)
-    t.sleep(1)
-    link.set_servo_position(c.cubeHolderArm, c.cubeHolderArmDown) 
-    movecubeHolderArm(c.cubeHolderArmSlightBack, 10)
-    """
 
 def movecubeHolderArm( endPos, speed=10 ):
     now = link.get_servo_position( c.cubeHolderArm )
@@ -143,3 +126,7 @@ def grabberArmDown():
     
 def grabberArmDrop():
     movegrabberArm( c.grabberArmDrop, 10 )
+    
+def grabberArmRelease():
+    movegrabberArm( c.grabberArmRelease, 5 )
+    

@@ -19,11 +19,8 @@ def main():
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
-    act.waitForLego(20)
+    act.waitForLego(25)
     act.checkColorAndDrive()
-    
-    
-        
     act.shutDown()
     
 

@@ -24,9 +24,10 @@ cubeHolderClose = 1750 #was 1650
 grabberArmUp = 200 #was 250
 grabberArmStraightUp = 550
 grabberArmDrop = 1000
+grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
 
-cubeHolderArmCompleteDown = 1975
+cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1800 #1900
 cubeHolderArmMesa = 1100 #was 1150
 cubeHolderArmMid = 850
