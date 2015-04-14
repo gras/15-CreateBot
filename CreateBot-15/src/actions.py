@@ -14,7 +14,6 @@ import constants as c
 import drive
 import servo
 import sensor as s
-from kovan import wait_for_light
 
 # sets up the cubeHolder and cubeHolderArm
 def init():
@@ -36,7 +35,8 @@ def init():
     while not link.a_button():
         pass
     print "Starting run..."    
-    wait_for_light(0)
+    link.wait_for_light(0)
+    link.shut_down_in(119.0)
     link.enable_servo(c.grabber)
     link.enable_servo(c.grabberArm)
     link.enable_servo(c.cubeHolderArm)
@@ -146,7 +146,9 @@ def dumpPod():
     #drive.withStop(100, 100, 6.0)
     servo.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)
-    t.sleep(20)#wait for lego
+    t.sleep(15)#wait for lego
+    drive.withStop(-100, -100, 1.0)
+    t.sleep(4.00)#wait for lego
     drive.withStop(-50, 50, 4.00)
     servo.cubeHolderArmDown()
     if c.isPrime:
@@ -158,14 +160,19 @@ def dumpPod():
     servo.moveGrabber(c.grabberOpen, 20)
     t.sleep (2.000)
     print "enable grabber"
+    """
     link.enable_servo(c.grabberArm)
     servo.grabberArmRelease()
     t.sleep(2.00)
+    """
     
 def dumpBotgal():
     servo.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)# 2.500
-    t.sleep(20)#wait for lego
+    t.sleep(15)#wait for lego
+    drive.withStop(-100, -100, 1.00)
+    t.sleep(4.00)
+    drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
     servo.cubeHolderArmDown()
     drive.withStop(-200, -200, 4.5)#was 4.0
