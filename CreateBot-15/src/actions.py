@@ -21,7 +21,7 @@ def init():
     sys.stdout = os.fdopen( sys.stdout.fileno(), 'w', 0 )
     
     print "Running My Create" 
-    print "Connecting To Create..."
+    print "Power on the Create Lauren..."
     link.create_connect()
     link.camera_open() 
     # preset servo positions
@@ -36,6 +36,7 @@ def init():
         pass
     print "Starting run..."    
     link.wait_for_light(0)
+    c.stoptime= link.seconds()
     link.shut_down_in(119.0)
     link.enable_servo(c.grabber)
     link.enable_servo(c.grabberArm)
@@ -140,7 +141,7 @@ def checkColorAndDrive():
         dumpBotgal()
     else:
         print "i see nothing,"
-    
+        parkInSafePlace()
 
 def dumpPod():
     #drive.withStop(100, 100, 6.0)
@@ -148,9 +149,9 @@ def dumpPod():
     drive.withStop(-100, -100, 4.00)
     t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.0)
-    t.sleep(4.00)#wait for lego
+    t.sleep(5.00)#wait for lego
     drive.withStop(-50, 50, 4.00)
-    servo.cubeHolderArmDown()
+    servo.cubeHolderArmParallel()
     if c.isPrime:
         drive.withStop( 100, 100, 4.5 )
     else:    
@@ -171,18 +172,32 @@ def dumpBotgal():
     drive.withStop(-100, -100, 4.00)# 2.500
     t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.00)
-    t.sleep(4.00)
+    t.sleep(5.00)
     drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
-    servo.cubeHolderArmDown()
+    servo.cubeHolderArmParallel()
     drive.withStop(-200, -200, 4.5)#was 4.0
     drive.withStop(-100, 100, 1.75)#1.5
     drive.noStop(0,0,0)
     servo.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
     
+def parkInSafePlace():
+    servo.cubeHolderArmMid()
+    drive.withStop(-100, -100, 4.00)# 2.500
+    t.sleep(15)#wait for lego
+    drive.withStop(-100, -100, 1.00)
+    t.sleep(5.00)
+    drive.withStop(100, 100, 1.0)
+    drive.withStop(-50, 50, 4.00)
+    t.sleep(5.00)
+    servo.cubeHolderArmParallel()
+    
 def shutDown():
     link.create_disconnect()
+    print "elapsed time"
+    print link.seconds()- c.stoptime
+
     
 
 def DEBUG( msg = "DEBUG" ):

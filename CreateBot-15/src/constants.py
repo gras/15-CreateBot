@@ -29,6 +29,7 @@ grabberArmDown = 2000 #was 1750
 
 cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1800 #1900
+cubeHolderArmParallel= 1400
 cubeHolderArmMesa = 1100 #was 1150
 cubeHolderArmMid = 850
 cubeHolderArmUp = 510
@@ -54,6 +55,7 @@ seeGreen = 2
 # analog ports
 
 ETport = 5
+stoptime= 0
 
 # digital ports
 clonePort = 15 
