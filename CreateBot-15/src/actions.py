@@ -23,6 +23,7 @@ def init():
     print "Running My Create" 
     print "Power on the Create Lauren..."
     link.create_connect()
+    link.create_full()
     link.camera_open() 
     # preset servo positions
     servo.initServos()
@@ -198,7 +199,9 @@ def shutDown():
     print "elapsed time"
     print link.seconds()- c.stoptime
 
-    
+def kill():
+    from subprocess import call
+    call(["killall","python"])    
 
 def DEBUG( msg = "DEBUG" ):
     print msg

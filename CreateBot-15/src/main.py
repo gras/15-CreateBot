@@ -22,7 +22,7 @@ def main():
     act.waitForLego(25)
     act.checkColorAndDrive()
     act.shutDown()
-    
+    act.kill()
 
 
 if __name__ == "__main__":

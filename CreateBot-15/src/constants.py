@@ -19,7 +19,7 @@ cubeHolderArm = 3
 
 # servo positions
 cubeHolderOpen = 650
-cubeHolderClose = 1750 #was 1650
+cubeHolderClose = 1550 #1750
 
 grabberArmUp = 200 #was 250
 grabberArmStraightUp = 550
@@ -65,7 +65,7 @@ clonePort = 15
 # define clone values here
 if isClone:
     cubeHolderOpen = 0
-    cubeHolderClose = 2000
+    cubeHolderClose = 1500
     
     cubeHolderArmCompleteDown = 2047
     cubeHolderArmDown = 1900
