@@ -32,11 +32,13 @@ def init():
     else:
         print "Running Clone"
         
-    print "Press the A button to start"
-    while not link.a_button():
+    print "Press the A button to start or the B button to exit"
+    while not link.a_button() and not link.b_button():
         pass
+    if link.b_button_clicked():
+        DEBUG("exited")
     print "Starting run..."    
-    link.wait_for_light(0)
+    link.wait_for_light(0) 
     c.stoptime= link.seconds()
     link.shut_down_in(119.0)
     link.enable_servo(c.grabber)
