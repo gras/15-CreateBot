@@ -18,7 +18,7 @@ def initServos():
     openGrabber()
     link.set_servo_position( c.grabberArm, c.grabberArmDown)
     link.enable_servos()
-    print "testing cubeHolder"
+    '''print "testing cubeHolder"
     opencubeHolder()
     t.sleep(1)#was.4
     closecubeHolder()
@@ -44,7 +44,7 @@ def initServos():
     link.disable_servo(c.grabber)
     grabberArmDown()
     link.disable_servo(c.grabberArm)
-    
+    '''
 
 def movecubeHolderArm( endPos, speed=10 ):
     now = link.get_servo_position( c.cubeHolderArm )
@@ -62,6 +62,9 @@ def movecubeHolderArm( endPos, speed=10 ):
 
 def opencubeHolder():
     link.set_servo_position( c.cubeHolder, c.cubeHolderOpen )
+    
+def opencubeHolderWide():
+    link.set_servo_position( c.cubeHolder, c.cubeHolderOpenWide )
 
 def closecubeHolder():
     link.set_servo_position( c.cubeHolder, c.cubeHolderClose )

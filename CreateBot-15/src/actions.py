@@ -32,6 +32,7 @@ def init():
     else:
         print "Running Clone"
         
+    '''
     print "Press the A button to start or the B button to exit"
     while not link.a_button() and not link.b_button():
         pass
@@ -39,6 +40,7 @@ def init():
         DEBUG("exited")
     print "Starting run..."    
     link.wait_for_light(0) 
+    '''
     c.stoptime= link.seconds()
     link.shut_down_in(119.0)
     link.enable_servo(c.grabber)
@@ -195,6 +197,21 @@ def parkInSafePlace():
     drive.withStop(-50, 50, 4.00)
     t.sleep(5.00)
     servo.cubeHolderArmParallel()
+
+def newCubeTest():
+    servo.cubeHolderArmUp()
+    servo.opencubeHolderWide() 
+    drive.withStop(100, 100, 4.00)
+    servo.cubeHolderArmCompleteDown()
+    t.sleep(1.00)
+    '''drive.withStop(100, 100, 3.00)
+    t.sleep(1.00)
+    servo.cubeHolderArmCompleteDown()
+    t.sleep(.50)'''
+    servo.closecubeHolder()
+    t.sleep(1.00)
+    servo.cubeHolderArmUp()
+    '''drive.withStop(50, 50, 1.50)'''
     
 def shutDown():
     link.create_disconnect()

@@ -18,6 +18,7 @@ grabber = 2 #cubeHolder that will grab botgal or pod
 cubeHolderArm = 3
 
 # servo positions
+cubeHolderOpenWide = 550
 cubeHolderOpen = 650
 cubeHolderClose = 1550 #1750
 
@@ -28,7 +29,7 @@ grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
 
 cubeHolderArmCompleteDown = 2000
-cubeHolderArmDown = 1800 #1900
+cubeHolderArmDown = 1900 #was 1800
 cubeHolderArmParallel= 1400
 cubeHolderArmMesa = 1100 #was 1150
 cubeHolderArmMid = 850

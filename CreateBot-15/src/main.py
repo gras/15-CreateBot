@@ -12,7 +12,7 @@ import actions as act
 def main():
     act.init()
     #READ INITSERVOS IN THE SERVO FILE
-    
+    '''
     act.driveToMesa() #using ET
     act.turnToMesa()
     act.driveToBlock()
@@ -21,6 +21,8 @@ def main():
     act.endDrive()
     act.waitForLego(25)
     act.checkColorAndDrive()
+    '''
+    act.newCubeTest()
     act.shutDown()
     act.kill()
 
