@@ -21,8 +21,9 @@ def main():
     act.endDrive()
     act.waitForLego(25)
     act.checkColorAndDrive()
-    '''
     act.newCubeTest()
+    '''
+    act.grabCubes()
     act.shutDown()
     act.kill()
 

@@ -213,6 +213,23 @@ def newCubeTest():
     servo.cubeHolderArmUp()
     '''drive.withStop(50, 50, 1.50)'''
     
+def grabCubes():
+    servo.cubeHolderArmUp()
+    servo.grabberArmDrop()
+    servo.openGrabber()
+    drive.withStop(100, 100, 4)
+    drive.withStop(-100, 100, 2.00)
+    '''servo.movegrabberArm(2000, 5)'''
+    drive.withStop(100, 100, 2.5)
+    servo.grabberArmDown()
+    t.sleep(2)
+    link.set_servo_position( c.grabber, 400)
+    '''servo.closeGrabber()''' 
+    t.sleep(2)
+    servo.grabberArmDrop()
+    drive.withStop(50, 50, 1.5)
+
+    
 def shutDown():
     link.create_disconnect()
     print "elapsed time"
