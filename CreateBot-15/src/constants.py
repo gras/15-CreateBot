@@ -6,14 +6,16 @@ Created on Mar 17, 2015
 
 import kovan as link
 
-
 # globalconstants
 isClone = link.digital(15)
 isPrime = not isClone
 
+# motor ports
+cubeGrabber = 1
+
 # servo ports
 grabberArm = 0
-cubeHolder  = 1
+frisbeeGrabber  = 1
 grabber = 2 #cubeHolder that will grab botgal or pod
 cubeHolderArm = 3
 
@@ -65,8 +67,8 @@ clonePort = 15
 
 # define clone values here
 if isClone:
-    cubeHolderOpen = 0
-    cubeHolderClose = 1500
+    frisbeeGrabberOpen = 80
+    frisbeeGrabberClose = 2000
     
     cubeHolderArmCompleteDown = 2047
     cubeHolderArmDown = 1900

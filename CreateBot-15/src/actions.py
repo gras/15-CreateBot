@@ -42,7 +42,7 @@ def init():
     link.wait_for_light(0) 
     '''
     c.stoptime= link.seconds()
-    link.shut_down_in(119.0)
+    #link.shut_down_in(119.0)
     link.enable_servo(c.grabber)
     link.enable_servo(c.grabberArm)
     link.enable_servo(c.cubeHolderArm)

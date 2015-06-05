@@ -9,13 +9,16 @@ import actions as act
 
 
 
+
 def main():
     act.init()
+    
     #READ INITSERVOS IN THE SERVO FILE
-    '''
+    
     act.driveToMesa() #using ET
     act.turnToMesa()
     act.driveToBlock()
+    '''
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
@@ -23,9 +26,9 @@ def main():
     act.checkColorAndDrive()
     act.newCubeTest()
     '''
-    act.grabCubes()
-    act.shutDown()
-    act.kill()
+    #act.grabCubes()
+    #act.shutDown()
+    #act.kill()
 
 
 if __name__ == "__main__":

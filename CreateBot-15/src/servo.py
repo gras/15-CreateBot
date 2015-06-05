@@ -10,21 +10,26 @@ import constants as c
 import time as t
 #from constants import grabberClosed
 import actions as act 
+from constants import frisbeeGrabberOpen, grabberArmStraightUp
 
 
 def initServos():
     link.set_servo_position( c.cubeHolderArm, c.cubeHolderArmCompleteDown)
-    closecubeHolder()
-    openGrabber()
+    #closecubeHolder()
     link.set_servo_position( c.grabberArm, c.grabberArmDown)
     link.enable_servos()
-    '''print "testing cubeHolder"
+    t.sleep(2);
+    print "testing cubeHolder"
     opencubeHolder()
-    t.sleep(1)#was.4
+    t.sleep(.2)#was.4
+    link.motor(c.cubeGrabber,0)
+    t.sleep(1)
     closecubeHolder()
-    t.sleep(1)#was.4
+    t.sleep(.15)#was.4
+    link.motor(c.cubeGrabber,0)
+    t.sleep(1)
     print "testing cubeHolderArm"
-    cubeHolderArmSlightBack()
+    cubeHolderArmUp()
     t.sleep(1)
     if link.analog_et(c.ETport) > 350:
         act.DEBUG("et sensor test failed: cubeArmHolder in the way")
@@ -34,8 +39,9 @@ def initServos():
     t.sleep(1)
     link.disable_servo(c.cubeHolderArm)
     print "testing grabberArm"
-    grabberArmUp()
-    t.sleep(.5) #was 1
+    grabberArmStraightUp()
+    t.sleep(1) #was 1
+    link.disable_servo(c.cubeHolderArm)
     print "testing grabber"
     closeGrabber()
     t.sleep(1)
@@ -44,7 +50,11 @@ def initServos():
     link.disable_servo(c.grabber)
     grabberArmDown()
     link.disable_servo(c.grabberArm)
-    '''
+    frisbeeGrabberOpen()
+    t.sleep(1);
+    frisbeeGrabberClose()
+    link.disable_servo(c.frisbeeGrabber)
+    
 
 def movecubeHolderArm( endPos, speed=10 ):
     now = link.get_servo_position( c.cubeHolderArm )
@@ -61,13 +71,13 @@ def movecubeHolderArm( endPos, speed=10 ):
     t.sleep( 0.010 )
 
 def opencubeHolder():
-    link.set_servo_position( c.cubeHolder, c.cubeHolderOpen )
+    link.motor(c.cubeGrabber,-50)
     
-def opencubeHolderWide():
-    link.set_servo_position( c.cubeHolder, c.cubeHolderOpenWide )
+#def opencubeHolderWide():
+  #  link.set_servo_position( c.cubeHolder, c.cubeHolderOpenWide )
 
 def closecubeHolder():
-    link.set_servo_position( c.cubeHolder, c.cubeHolderClose )
+    link.motor(c.cubeGrabber,50)
     
 def openGrabber():
     link.set_servo_position( c.grabber, c.grabberOpen)
@@ -127,6 +137,9 @@ def cubeHolderArmParallel():
 def cubeHolderArmSlightUp():
     movecubeHolderArm( c.cubeHolderArmSlightUp, 5)
     
+def grabberArmStraightUp():
+    movegrabberArm( c.grabberArmStraightUp, 5) 
+       
 def grabberArmUp():
     movegrabberArm( c.grabberArmUp, 5 )
     
@@ -139,4 +152,9 @@ def grabberArmDrop():
 def grabberArmRelease():
     movegrabberArm( c.grabberArmRelease, 5 )
 
+def frisbeeGrabberOpen():
+    link.set_servo_position( c.frisbeeGrabber, c.frisbeeGrabberOpen )
+
+def frisbeeGrabberClose():
+    link.set_servo_position( c.frisbeeGrabber, c.frisbeeGrabberClose )
     
