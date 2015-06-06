@@ -14,6 +14,7 @@ import constants as c
 import drive
 import servo
 import sensor as s
+from time import sleep
 
 # sets up the cubeHolder and cubeHolderArm
 def init():
@@ -26,11 +27,51 @@ def init():
     link.create_full()
     link.camera_open() 
     # preset servo positions
-    servo.initServos()
+    # servo.initServos()
+    link.enable_servos()
     if c.isPrime:
         print "Running Prime"
     else:
         print "Running Clone"
+
+# totally efficient code
+    print "trying to enable"
+    link.enable_servo(0)
+    link.enable_servo(1)
+    link.set_servo_position(0, 1000)
+    link.set_servo_position(1, 1000)
+    
+    print "enabled"
+    print "Press the A button to start or the B button to exit"
+    while not link.a_button() and not link.b_button():
+        pass
+    if link.b_button_clicked():
+        DEBUG("pj = bad")
+    print "Starting run..."    
+    servo.frisbeeGrabberOpen()
+    t.sleep(20)
+    servo.frisbeeGrabberClose()
+    t.sleep(20)
+    servo.frisbeeGrabberOpen()
+
+    '''
+    while not link.c_button():
+        if link.b_button_clicked():
+            print "B - Close"
+            servo.frisbeeGrabberClose()
+            t.sleep(5)
+            pass
+        else:
+            if link.a_button_clicked():
+                print "A - Open"
+                servo.frisbeeGrabberOpen()
+                t.sleep(5)
+                pass
+            else:
+                pass
+    DEBUG("C - Done")
+    '''
+        
         
     '''
     print "Press the A button to start or the B button to exit"

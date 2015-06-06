@@ -73,8 +73,8 @@ def movecubeHolderArm( endPos, speed=10 ):
 def opencubeHolder():
     link.motor(c.cubeGrabber,-50)
     
-#def opencubeHolderWide():
-  #  link.set_servo_position( c.cubeHolder, c.cubeHolderOpenWide )
+#  def opencubeHolderWide():
+#  link.set_servo_position( c.cubeHolder, c.cubeHolderOpenWide )
 
 def closecubeHolder():
     link.motor(c.cubeGrabber,50)

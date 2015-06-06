@@ -15,8 +15,8 @@ cubeGrabber = 1
 
 # servo ports
 grabberArm = 0
-frisbeeGrabber  = 1
-grabber = 2 #cubeHolder that will grab botgal or pod
+frisbeeGrabber  = 2
+grabber = 1 #cubeHolder that will grab botgal or pod
 cubeHolderArm = 3
 
 # servo positions
