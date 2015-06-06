@@ -15,7 +15,7 @@ cubeGrabber = 1
 
 # servo ports
 grabberArm = 0
-frisbeeGrabber  = 2
+frisbeeGrabber = 2
 grabber = 1 #cubeHolder that will grab botgal or pod
 cubeHolderArm = 3
 
@@ -41,7 +41,9 @@ cubeHolderArmMidDown = 200 # for optimization
 cubeHolderArmBackMesa = 0 # 30 before
 
 
+
 grabberClosed = 150
+grabberMidClosed = 1100
 grabberOpen = 1600
 
 #motor ports
@@ -82,6 +84,7 @@ if isClone:
     grabberArmUp = 120
     grabberArmStraightUp = 400
     grabberArmMid = 750
+    grabberArmFrisbee = 1100
     grabberArmDown = 1840
 
 #isClone

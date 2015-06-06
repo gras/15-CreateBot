@@ -254,6 +254,28 @@ def newCubeTest():
     servo.cubeHolderArmUp()
     '''drive.withStop(50, 50, 1.50)'''
     
+def grabFrisbee():
+    link.enable_servo(0)
+    link.enable_servo(1)
+    link.enable_servo(2)
+    servo.grabberArmMid()
+    t.sleep(1.00)
+    servo.openGrabber()
+    t.sleep(1.00)
+    servo.frisbeeGrabberOpen()
+    t.sleep(1.00)
+    servo.grabberArmFribee()
+    t.sleep(2.00)
+    servo.midCloseGrabber()
+    t.sleep(1.00)
+    servo.frisbeeGrabberClose()
+    t.sleep(1.00)
+    servo.SlowOpenGrabber()
+    t.sleep(1.00)
+    servo.grabberArmMid()
+    t.sleep(2.00)
+
+    
 def grabCubes():
     servo.cubeHolderArmUp()
     servo.grabberArmDrop()

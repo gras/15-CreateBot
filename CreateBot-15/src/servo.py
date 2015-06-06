@@ -82,6 +82,12 @@ def closecubeHolder():
 def openGrabber():
     link.set_servo_position( c.grabber, c.grabberOpen)
     
+def SlowOpenGrabber():
+    moveGrabber(c.grabberOpen, 5)
+    
+def midCloseGrabber():
+    moveGrabber( c.grabberMidClosed, 5)
+    
 def closeGrabber():
     link.set_servo_position( c.grabber, c.grabberClosed)
 
@@ -145,6 +151,12 @@ def grabberArmUp():
     
 def grabberArmDown():
     movegrabberArm( c.grabberArmDown, 10 )
+    
+def grabberArmMid():
+    movegrabberArm( c.grabberArmMid,10)
+    
+def grabberArmFribee():
+    movegrabberArm( c.grabberArmFrisbee, 5)
     
 def grabberArmDrop():
     movegrabberArm( c.grabberArmDrop, 10 )

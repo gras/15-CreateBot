@@ -11,7 +11,7 @@ import actions as act
 
 
 def main():
-    act.init()
+    ''' act.init()''' 
     
     #READ INITSERVOS IN THE SERVO FILE
     '''
@@ -26,6 +26,9 @@ def main():
     act.checkColorAndDrive()
     act.newCubeTest()
     '''
+    print "Working"
+    act.grabFrisbee()
+    act.DEBUG("Yup")
     #act.grabCubes()
     #act.shutDown()
     #act.kill()
