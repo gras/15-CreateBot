@@ -86,6 +86,7 @@ if isClone:
     grabberArmUp = 120
     grabberArmStraightUp = 400
     grabberArmMid = 750
+    grabberArmBack = 850
     grabberArmFrisbee = 1100
     grabberArmDown = 1840
 

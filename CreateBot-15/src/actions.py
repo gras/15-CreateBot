@@ -265,7 +265,6 @@ def newCubeTest():
 '''
      
 def grabFrisbee():
-    link.enable_servo(0)
     link.enable_servo(1)
     link.enable_servo(2)
     move.grabberArmMid()
@@ -284,7 +283,28 @@ def grabFrisbee():
     t.sleep(1.00)
     move.grabberArmMid()
     t.sleep(2.00)
+    
 
+def moveToFrisbee():
+    link.create_connect()
+    link.enable_servo(0)
+    move.movegrabberArm(c.grabberArmBack, 10) 
+    drive.noStop(-100, -100, 0)
+    while ( link.analog_et(c.ETport) < 425):
+        pass
+    print link.analog_et(c.ETport)
+    drive.withStop(50, 50, 0.60)
+    '''link.create_disconnect()
+    drive.noStop(100, 100, 0)
+    while ( link.analog_et(c.ETport) > 350):
+        pass
+    print link.analog_et(c.ETport)
+    drive.withStop(-50, -50, 0.45)'''
+    
+def frisbeeToBotgal():
+    drive.withStop(200, 100, 4.00)
+    
+    
     
 def grabCubes():
     move.cubeHolderArmUp()
@@ -314,6 +334,7 @@ def kill():
 
 def DEBUG( msg = "DEBUG" ):
     print msg
+    link.create_disconnect()
     link.ao()
     exit()
 
