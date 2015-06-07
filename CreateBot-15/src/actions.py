@@ -11,10 +11,10 @@ import time as t
 import kovan as link
 
 import constants as c
+import movement as move
 import drive
-import servo
 import sensor as s
-from time import sleep
+# from time import sleep
 
 # sets up the cubeHolder and cubeHolderArm
 def init():
@@ -26,14 +26,15 @@ def init():
     link.create_connect()
     link.create_full()
     link.camera_open() 
-    # preset servo positions
-    # servo.initServos()
+    # preset move positions
+    move.initMoves()
     link.enable_servos()
     if c.isPrime:
         print "Running Prime"
     else:
         print "Running Clone"
 
+'''
 # totally efficient code
     print "trying to enable"
     link.enable_servo(0)
@@ -48,32 +49,34 @@ def init():
     if link.b_button_clicked():
         DEBUG("pj = bad")
     print "Starting run..."    
-    servo.frisbeeGrabberOpen()
+    move.frisbeeGrabberOpen()
     t.sleep(20)
-    servo.frisbeeGrabberClose()
+    move.frisbeeGrabberClose()
     t.sleep(20)
-    servo.frisbeeGrabberOpen()
+    move.frisbeeGrabberOpen()
+'''
 
-    '''
+
+'''
     while not link.c_button():
         if link.b_button_clicked():
             print "B - Close"
-            servo.frisbeeGrabberClose()
+            move.frisbeeGrabberClose()
             t.sleep(5)
             pass
         else:
             if link.a_button_clicked():
                 print "A - Open"
-                servo.frisbeeGrabberOpen()
+                move.frisbeeGrabberOpen()
                 t.sleep(5)
                 pass
             else:
                 pass
     DEBUG("C - Done")
-    '''
+
         
         
-    '''
+
     print "Press the A button to start or the B button to exit"
     while not link.a_button() and not link.b_button():
         pass
@@ -81,17 +84,19 @@ def init():
         DEBUG("exited")
     print "Starting run..."    
     link.wait_for_light(0) 
-    '''
+    
     c.stoptime= link.seconds()
     #link.shut_down_in(119.0)
     link.enable_servo(c.grabber)
     link.enable_servo(c.grabberArm)
     link.enable_servo(c.cubeHolderArm)
-    
+''' 
+
+
 
 def driveToMesa():
     print "driveToMesa"
-    servo.cubeHolderArmSlightBack()
+    move.cubeHolderArmSlightBack()
     drive.noStop( 100, 100, 2.0 )
     drive.withStop( 200, 200, 3.5) #was 3.3
     drive.noStop(-50, -50, 0)
@@ -110,7 +115,7 @@ def turnToMesa():
     if c.isPrime:
         drive.withStop( -250, 250, 0.745 ) #was 0.770
     else:
-        drive.withStop( -250, 250, 0.750 ) #was 0.725
+        drive.withStop( -250, 250, 0.755 ) #was 0.750
         
 def waitForLego(x):
     print "waitForLego"
@@ -119,27 +124,27 @@ def waitForLego(x):
 # sweeps part of the mesa. drives to the pod or botgal
 def driveToBlock():
     print "driveToBlock"
-    servo.cubeHolderArmBackMesa()
+    move.cubeHolderArmBackMesa()
     if c.isPrime:
         drive.withStop( 100, 100, 1.800 )
     else:    
-        drive.withStop( 100, 100, 2.1)
+        drive.withStop( 100, 100, 2)
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
     print "grabBot"
-    servo.openGrabber()#opening grabber
+    move.openGrabber()#opening grabber
     t.sleep( 0.500 )
     
-    #using grabberArm as a servo
-    servo.grabberArmUp()
+    #using grabberArm as a move
+    move.grabberArmUp()
     t.sleep( 1.000 )
     
-    servo.closeGrabber()
+    move.closeGrabber()
     t.sleep(0.500 )
     
-    # using grabberArm as a servo
-    servo.grabberArmDrop()
+    # using grabberArm as a move
+    move.grabberArmDrop()
     link.disable_servo( c.grabberArm)
      
 # sweeps more of the mesa and stops to back up in order to change cubeHolderArm position
@@ -147,30 +152,30 @@ def driveAndReset():
     print "driveAndReset"
     drive.withStop( 100, 100, 3.450 ) #was 102,100
     drive.withStop( -100, -100, 0.250 )
-    servo.cubeHolderArmUp()
+    move.cubeHolderArmUp()
     drive.withStop( -250, -250, 2.00)# was -100,-100,6.4
 
 # sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin
 def endDrive():
     print "endDrive"
-    servo.cubeHolderArmMesa()
+    move.cubeHolderArmMesa()
     t.sleep( 1.00 )
     if c.isPrime:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
-        servo.opencubeHolder() #dump blocks
+        move.opencubeHolder() #dump blocks
         t.sleep(1.0)
-        servo.cubeHolderArmMid()
+        move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
-        servo.cubeHolderArmMesa()
+        move.cubeHolderArmMesa()
         t.sleep( 1.00 )
         drive.withStop( 100, 100, 5.300 )  #was 100,100
     else:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
-        servo.opencubeHolder() #dump blocks
+        move.opencubeHolder() #dump blocks
         t.sleep(1.0)
-        servo.cubeHolderArmMid()
+        move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
-        servo.cubeHolderArmMesa()
+        move.cubeHolderArmMesa()
         t.sleep( 1.00 )
         drive.withStop( 103, 100, 5.300 )  #was 100,100 
     
@@ -191,45 +196,45 @@ def checkColorAndDrive():
 
 def dumpPod():
     #drive.withStop(100, 100, 6.0)
-    servo.cubeHolderArmMid()
+    move.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)
     t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.0)
     t.sleep(5.00)#wait for lego
     drive.withStop(-50, 50, 4.00)
-    servo.cubeHolderArmParallel()
+    move.cubeHolderArmParallel()
     if c.isPrime:
         drive.withStop( 100, 100, 4.5 )
     else:    
         drive.withStop( 100, 100, 4.0)
     drive.withStop(50, -50, 4.00)
     link.enable_servo(c.grabber)
-    servo.moveGrabber(c.grabberOpen, 20)
+    move.moveGrabber(c.grabberOpen, 20)
     t.sleep (2.000)
     print "enable grabber"
     """
     link.enable_servo(c.grabberArm)
-    servo.grabberArmRelease()
+    move.grabberArmRelease()
     t.sleep(2.00)
     """
     
 def dumpBotgal():
-    servo.cubeHolderArmMid()
+    move.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)# 2.500
     t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.00)
     t.sleep(5.00)
     drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
-    servo.cubeHolderArmParallel()
+    move.cubeHolderArmParallel()
     drive.withStop(-200, -200, 4.5)#was 4.0
     drive.withStop(-100, 100, 1.75)#1.5
     drive.noStop(0,0,0)
-    servo.moveGrabber(c.grabberOpen, 10)
+    move.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
     
 def parkInSafePlace():
-    servo.cubeHolderArmMid()
+    move.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)# 2.500
     t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.00)
@@ -237,59 +242,64 @@ def parkInSafePlace():
     drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
     t.sleep(5.00)
-    servo.cubeHolderArmParallel()
+    move.cubeHolderArmParallel()
 
+'''
 def newCubeTest():
-    servo.cubeHolderArmUp()
-    servo.opencubeHolderWide() 
+    move.cubeHolderArmUp()
+    move.opencubeHolderWide() 
     drive.withStop(100, 100, 4.00)
-    servo.cubeHolderArmCompleteDown()
+    move.cubeHolderArmCompleteDown()
     t.sleep(1.00)
-    '''drive.withStop(100, 100, 3.00)
-    t.sleep(1.00)
-    servo.cubeHolderArmCompleteDown()
-    t.sleep(.50)'''
-    servo.closecubeHolder()
-    t.sleep(1.00)
-    servo.cubeHolderArmUp()
-    '''drive.withStop(50, 50, 1.50)'''
     
+    drive.withStop(100, 100, 3.00)
+    t.sleep(1.00)
+    move.cubeHolderArmCompleteDown()
+    t.sleep(.50)
+    
+    move.closecubeHolder()
+    t.sleep(1.00)
+    move.cubeHolderArmUp()
+    
+    drive.withStop(50, 50, 1.50)
+'''
+     
 def grabFrisbee():
     link.enable_servo(0)
     link.enable_servo(1)
     link.enable_servo(2)
-    servo.grabberArmMid()
+    move.grabberArmMid()
     t.sleep(1.00)
-    servo.openGrabber()
+    move.openGrabber()
     t.sleep(1.00)
-    servo.frisbeeGrabberOpen()
+    move.frisbeeGrabberOpen()
     t.sleep(1.00)
-    servo.grabberArmFribee()
+    move.grabberArmFribee()
     t.sleep(2.00)
-    servo.midCloseGrabber()
+    move.midCloseGrabber()
     t.sleep(1.00)
-    servo.frisbeeGrabberClose()
+    move.frisbeeGrabberClose()
     t.sleep(1.00)
-    servo.SlowOpenGrabber()
+    move.SlowOpenGrabber()
     t.sleep(1.00)
-    servo.grabberArmMid()
+    move.grabberArmMid()
     t.sleep(2.00)
 
     
 def grabCubes():
-    servo.cubeHolderArmUp()
-    servo.grabberArmDrop()
-    servo.openGrabber()
+    move.cubeHolderArmUp()
+    move.grabberArmDrop()
+    move.openGrabber()
     drive.withStop(100, 100, 4)
     drive.withStop(-100, 100, 2.00)
-    '''servo.movegrabberArm(2000, 5)'''
+    '''move.movegrabberArm(2000, 5)'''
     drive.withStop(100, 100, 2.5)
-    servo.grabberArmDown()
+    move.grabberArmDown()
     t.sleep(2)
     link.set_servo_position( c.grabber, 400)
-    '''servo.closeGrabber()''' 
+    '''move.closeGrabber()''' 
     t.sleep(2)
-    servo.grabberArmDrop()
+    move.grabberArmDrop()
     drive.withStop(50, 50, 1.5)
 
     

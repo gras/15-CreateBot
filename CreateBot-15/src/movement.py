@@ -6,6 +6,7 @@ Created on Mar 17, 2015
 
 import kovan as link
 
+import motor as m
 import constants as c
 import time as t
 #from constants import grabberClosed
@@ -13,9 +14,9 @@ import actions as act
 from constants import frisbeeGrabberOpen, grabberArmStraightUp
 
 
-def initServos():
+def initMoves():
     link.set_servo_position( c.cubeHolderArm, c.cubeHolderArmCompleteDown)
-    #closecubeHolder()
+    closecubeHolder()
     link.set_servo_position( c.grabberArm, c.grabberArmDown)
     link.enable_servos()
     t.sleep(2);
@@ -54,7 +55,14 @@ def initServos():
     t.sleep(1);
     frisbeeGrabberClose()
     link.disable_servo(c.frisbeeGrabber)
+ 
+
+def opencubeHolder():
+    link.motor(c.cubeGrabber,-50)
     
+def closecubeHolder():
+    link.motor(c.cubeGrabber,50)
+
 
 def movecubeHolderArm( endPos, speed=10 ):
     now = link.get_servo_position( c.cubeHolderArm )
@@ -70,14 +78,12 @@ def movecubeHolderArm( endPos, speed=10 ):
     link.set_servo_position( c.cubeHolderArm, endPos )
     t.sleep( 0.010 )
 
-def opencubeHolder():
-    link.motor(c.cubeGrabber,-50)
+
     
 #  def opencubeHolderWide():
 #  link.set_servo_position( c.cubeHolder, c.cubeHolderOpenWide )
 
-def closecubeHolder():
-    link.motor(c.cubeGrabber,50)
+
     
 def openGrabber():
     link.set_servo_position( c.grabber, c.grabberOpen)

@@ -11,17 +11,17 @@ import actions as act
 
 
 def main():
-    ''' act.init()''' 
-    
-    #READ INITSERVOS IN THE SERVO FILE
+    act.init()
+    ''' 
+    #READ INITMOVES IN THE MOVEMENT FILE
     '''
     act.driveToMesa() #using ET
     act.turnToMesa()
     act.driveToBlock()
-  
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
+    act.DEBUG("please work")
     act.waitForLego(25)
     act.checkColorAndDrive()
     act.newCubeTest()
@@ -32,7 +32,7 @@ def main():
     #act.grabCubes()
     #act.shutDown()
     #act.kill()
-
+    '''
 
 if __name__ == "__main__":
     main()

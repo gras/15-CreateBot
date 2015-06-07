@@ -11,15 +11,15 @@ isClone = link.digital(15)
 isPrime = not isClone
 
 # motor ports
-cubeGrabber = 1
+cubeGrabber = 2
 
-# servo ports
+# movement ports
 grabberArm = 0
 frisbeeGrabber = 2
 grabber = 1 #cubeHolder that will grab botgal or pod
 cubeHolderArm = 3
 
-# servo positions
+# movement positions
 cubeHolderOpenWide = 550
 cubeHolderOpen = 650
 cubeHolderClose = 1550 #1750
@@ -42,6 +42,7 @@ cubeHolderArmBackMesa = 0 # 30 before
 
 
 
+
 grabberClosed = 150
 grabberMidClosed = 1100
 grabberOpen = 1600
@@ -59,7 +60,7 @@ seeGreen = 2
 
 # analog ports
 
-ETport = 5
+ETport = 2
 stoptime= 0
 
 # digital ports
@@ -79,7 +80,8 @@ if isClone:
     cubeHolderArmUp = 550
     cubeHolderArmSlightBack = 450
     cubeHolderArmMidDown = 200 # for optimization
-    cubeHolderArmBackMesa = 40 # 30 before
+    cubeHolderArmBackMesa = 100 # 40 before
+    #cubeholderArmSlightUp = 
     
     grabberArmUp = 120
     grabberArmStraightUp = 400
