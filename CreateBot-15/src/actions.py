@@ -27,14 +27,14 @@ def init():
     link.create_full()
     link.camera_open() 
     # preset move positions
-    move.initMoves()
-    link.enable_servos()
     if c.isPrime:
         print "Running Prime"
     else:
         print "Running Clone"
+    move.initMoves()
+    link.enable_servos()
 
-'''
+
 # totally efficient code
     print "trying to enable"
     link.enable_servo(0)
@@ -49,15 +49,16 @@ def init():
     if link.b_button_clicked():
         DEBUG("pj = bad")
     print "Starting run..."    
+    
     move.frisbeeGrabberOpen()
     t.sleep(20)
     move.frisbeeGrabberClose()
     t.sleep(20)
     move.frisbeeGrabberOpen()
-'''
+    
 
 
-'''
+
     while not link.c_button():
         if link.b_button_clicked():
             print "B - Close"
@@ -90,7 +91,7 @@ def init():
     link.enable_servo(c.grabber)
     link.enable_servo(c.grabberArm)
     link.enable_servo(c.cubeHolderArm)
-''' 
+
 
 
 
@@ -267,13 +268,13 @@ def newCubeTest():
 def grabFrisbee():
     link.enable_servo(1)
     link.enable_servo(2)
-    move.grabberArmMid()
+    #move.grabberArmMid()
     t.sleep(1.00)
     move.openGrabber()
     t.sleep(1.00)
     move.frisbeeGrabberOpen()
     t.sleep(1.00)
-    move.grabberArmFribee()
+    move.grabberArmMid()
     t.sleep(2.00)
     move.midCloseGrabber()
     t.sleep(1.00)
@@ -281,28 +282,42 @@ def grabFrisbee():
     t.sleep(1.00)
     move.SlowOpenGrabber()
     t.sleep(1.00)
-    move.grabberArmMid()
+    move.grabberArmStraightUp()
     t.sleep(2.00)
+    
     
 
 def moveToFrisbee():
     link.create_connect()
-    link.enable_servo(0)
-    move.movegrabberArm(c.grabberArmBack, 10) 
+    if c.isPrime:
+        print "Running Prime"
+    else:
+        print "Running Clone"
+
+    link.set_servo_position( c.grabberArm, c.grabberArmFrisbeeAproach)
+    link.enable_servo(c.grabberArm)
+    #move.movegrabberArm(c.grabberArmStraightUp, 10) 
+    t.sleep(2)
+        
     drive.noStop(-100, -100, 0)
     while ( link.analog_et(c.ETport) < 425):
         pass
     print link.analog_et(c.ETport)
     drive.withStop(50, 50, 0.60)
-    '''link.create_disconnect()
+    '''
     drive.noStop(100, 100, 0)
     while ( link.analog_et(c.ETport) > 350):
         pass
     print link.analog_et(c.ETport)
-    drive.withStop(-50, -50, 0.45)'''
+    drive.withStop(-50, -50, 0.45)
+    '''
+    
     
 def frisbeeToBotgal():
     drive.withStop(200, 100, 4.00)
+    move.grabberArmDown()
+    move.frisbeeGrabberOpen()
+    link.create_disconnect()
     
     
     

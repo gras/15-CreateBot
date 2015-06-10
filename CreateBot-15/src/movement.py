@@ -6,7 +6,7 @@ Created on Mar 17, 2015
 
 import kovan as link
 
-import motor as m
+#import motor as m
 import constants as c
 import time as t
 #from constants import grabberClosed
@@ -30,7 +30,7 @@ def initMoves():
     link.motor(c.cubeGrabber,0)
     t.sleep(1)
     print "testing cubeHolderArm"
-    cubeHolderArmUp()
+    cubeHolderArmSlightBack() 
     t.sleep(1)
     if link.analog_et(c.ETport) > 350:
         act.DEBUG("et sensor test failed: cubeArmHolder in the way")
@@ -146,8 +146,8 @@ def cubeHolderArmMesa():
 def cubeHolderArmParallel():
     movecubeHolderArm( c.cubeHolderArmParallel, 10)
     
-def cubeHolderArmSlightUp():
-    movecubeHolderArm( c.cubeHolderArmSlightUp, 5)
+#def cubeHolderArmSlightUp():
+#   movecubeHolderArm( c.cubeHolderArmSlightUp, 5)
     
 def grabberArmStraightUp():
     movegrabberArm( c.grabberArmStraightUp, 5) 
@@ -169,6 +169,9 @@ def grabberArmDrop():
     
 def grabberArmRelease():
     movegrabberArm( c.grabberArmRelease, 5 )
+    
+def grabberArmFrisbeeAproach():
+    movegrabberArm( c.grabberArmFrisbeeAproach, 10)
 
 def frisbeeGrabberOpen():
     link.set_servo_position( c.frisbeeGrabber, c.frisbeeGrabberOpen )

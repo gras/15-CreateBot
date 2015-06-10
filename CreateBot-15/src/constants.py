@@ -13,7 +13,7 @@ isPrime = not isClone
 # motor ports
 cubeGrabber = 2
 
-# movement ports
+# servo ports
 grabberArm = 0
 frisbeeGrabber = 2
 grabber = 1 #cubeHolder that will grab botgal or pod
@@ -40,7 +40,8 @@ cubeHolderArmSlightBack = 350
 cubeHolderArmMidDown = 200 # for optimization
 cubeHolderArmBackMesa = 0 # 30 before
 
-
+frisbeeGrabberOpen = 80
+frisbeeGrabberClose = 2000
 
 
 grabberClosed = 150
@@ -85,9 +86,10 @@ if isClone:
     
     grabberArmUp = 120
     grabberArmStraightUp = 400
-    grabberArmMid = 750
-    grabberArmBack = 850
+    grabberArmMid = 650 #was 550
+    grabberArmBack = 850 
     grabberArmFrisbee = 1100
     grabberArmDown = 1840
+    grabberArmFrisbeeAproach = 485
 
 #isClone

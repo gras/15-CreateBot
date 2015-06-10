@@ -11,10 +11,11 @@ import actions as act
 
 
 def main():
-    '''act.init()'''
+    '''
+    act.init()
     
     #READ INITMOVES IN THE MOVEMENT FILE
-    '''
+    
     act.driveToMesa() #using ET
     act.turnToMesa()
     act.driveToBlock()
@@ -31,10 +32,12 @@ def main():
     act.grabFrisbee()
     act.frisbeeToBotgal()
     act.DEBUG("Yup")
+
     
     #act.grabCubes()
     #act.shutDown()
     #act.kill()
+    
     
 
 if __name__ == "__main__":
