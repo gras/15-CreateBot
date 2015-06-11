@@ -11,8 +11,9 @@ import actions as act
 
 
 def main():
-    '''
+    
     act.init()
+    act.DEBUG("swag")
     
     #READ INITMOVES IN THE MOVEMENT FILE
     
@@ -25,8 +26,9 @@ def main():
     act.DEBUG("please work")
     act.waitForLego(25)
     act.checkColorAndDrive()
-    act.newCubeTest()
-    '''
+    
+    #act.newCubeTest()
+    
     print "Working"
     act.moveToFrisbee()
     act.grabFrisbee()

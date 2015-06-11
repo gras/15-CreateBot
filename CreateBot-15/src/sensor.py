@@ -6,6 +6,7 @@ Created on Mar 17, 2015
 import kovan as link
 import constants as c
 import time
+import actions as act
 
 def checkForBotGalOrPod() :
     print "cameraTrack"
@@ -44,3 +45,9 @@ def checkForBotGalOrPod() :
     else:
         print "nothing found"
         return c.seeNot
+
+def testETScanner():
+    if link.analog_et(c.ETport) > 350:
+        act.DEBUG("et sensor test failed: cubeArmHolder in the way")
+    else:
+        print "et sensor test passed"
