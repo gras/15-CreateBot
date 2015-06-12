@@ -32,69 +32,20 @@ def init():
     else:
         print "Running Clone"
     move.initMoves()
-    link.enable_servos()
-
-
-# totally efficient code
-    print "trying to enable"
-    link.enable_servo(0)
-    link.enable_servo(1)
-    link.set_servo_position(0, 1000)
-    link.set_servo_position(1, 1000)
     
-    print "enabled"
-    print "Press the A button to start or the B button to exit"
-    while not link.a_button() and not link.b_button():
-        pass
-    if link.b_button_clicked():
-        DEBUG("pj = bad")
-    print "Starting run..."    
-    
-    move.frisbeeGrabberOpen()
-    t.sleep(20)
-    move.frisbeeGrabberClose()
-    t.sleep(20)
-    move.frisbeeGrabberOpen()
-    
-
-
-
-    while not link.c_button():
-        if link.b_button_clicked():
-            print "B - Close"
-            move.frisbeeGrabberClose()
-            t.sleep(5)
-            pass
-        else:
-            if link.a_button_clicked():
-                print "A - Open"
-                move.frisbeeGrabberOpen()
-                t.sleep(5)
-                pass
-            else:
-                pass
-    DEBUG("C - Done")
-
-        
-        
-
     print "Press the A button to start or the B button to exit"
     while not link.a_button() and not link.b_button():
         pass
     if link.b_button_clicked():
         DEBUG("exited")
     print "Starting run..."    
-    link.wait_for_light(0) 
+    #link.wait_for_light(0) 
     
     c.stoptime= link.seconds()
     #link.shut_down_in(119.0)
-    link.enable_servo(c.grabber)
-    link.enable_servo(c.grabberArm)
-    link.enable_servo(c.cubeHolderArm)
-
-
-
-
+    move.gripCubes()
+    link.enable_servos()
+    
 def driveToMesa():
     print "driveToMesa"
     move.cubeHolderArmSlightBack()
@@ -135,11 +86,11 @@ def driveToBlock():
 def grabBot():
     print "grabBot"
     move.openGrabber()#opening grabber
-    t.sleep( 0.500 )
+    #t.sleep( 0.500 )
     
     #using grabberArm as a move
-    move.grabberArmUp()
-    t.sleep( 1.000 )
+    move.grabberArmUp( 10 )
+    t.sleep( .500 )
     
     move.closeGrabber()
     t.sleep(0.500 )
@@ -163,7 +114,7 @@ def endDrive():
     t.sleep( 1.00 )
     if c.isPrime:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
-        move.opencubeHolder() #dump blocks
+        move.opencubeHolder( 1 ) # was .7  #dump blocks
         t.sleep(1.0)
         move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
