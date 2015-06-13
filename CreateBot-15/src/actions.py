@@ -14,6 +14,7 @@ import constants as c
 import movement as move
 import drive
 import sensor as s
+#from kovan import create_spin_CW
 # from time import sleep
 
 # sets up the cubeHolder and cubeHolderArm
@@ -46,6 +47,11 @@ def init():
     move.gripCubes()
     link.enable_servos()
     
+def SpinCW90():
+    drive.turnCW90() #download the scripted turn
+    t.sleep( .5 )
+    link.create_write_byte( 153 ) #execute the script
+    
 def driveToMesa():
     print "driveToMesa"
     move.cubeHolderArmSlightBack()
@@ -64,10 +70,13 @@ def driveToMesa():
 # turns to the right so that the cubeHolderArm can sweep the mesa
 def turnToMesa():
     print "turnToMesa"
+    '''
     if c.isPrime:
-        drive.withStop( -250, 250, 0.745 ) #was 0.770
+        drive.withStop( -300, 300, 0.600 ) #was -250, 250, 0.550 #correct code
     else:
         drive.withStop( -250, 250, 0.755 ) #was 0.750
+    '''
+    SpinCW90()
         
 def waitForLego(x):
     print "waitForLego"

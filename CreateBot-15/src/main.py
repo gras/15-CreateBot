@@ -13,18 +13,16 @@ import actions as act
 def main():
     
     act.init()
-       
-    #READ INITMOVES IN THE MOVEMENT FILE
-    
+        
     act.driveToMesa() #using ET
     act.turnToMesa()
+    act.DEBUG("swag")
     act.driveToBlock()
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
     #act.waitForLego(25)
     act.checkColorAndDrive()
-    act.DEBUG("swag")
     #act.newCubeTest()
     
     print "Working"

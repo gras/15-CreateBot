@@ -20,3 +20,15 @@ def withStop( rightSpeed, leftSpeed, driveTime ):
     t.sleep( driveTime )
     #link.ao()
     link.create_drive_direct( 0, 0 )
+    
+def turnCW90():
+    link.create_write_byte( 152 )
+    link.create_write_byte(8)
+    link.create_write_byte(137)
+    link.create_write_byte(0)
+    link.create_write_byte(250)
+    link.create_write_byte(255)
+    link.create_write_byte(255)
+    link.create_write_byte(157)
+    link.create_write_byte(255)
+    link.create_write_byte(168) #rotates -88 degrees CCW
