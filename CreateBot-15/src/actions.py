@@ -45,12 +45,7 @@ def init():
     c.stoptime= link.seconds()
     #link.shut_down_in(119.0)
     move.gripCubes()
-    link.enable_servos()
-    
-def SpinCW90():
-    drive.turnCW90() #download the scripted turn
-    t.sleep( .5 )
-    link.create_write_byte( 153 ) #execute the script
+    link.enable_servos()  
     
 def driveToMesa():
     print "driveToMesa"
@@ -70,13 +65,14 @@ def driveToMesa():
 # turns to the right so that the cubeHolderArm can sweep the mesa
 def turnToMesa():
     print "turnToMesa"
-    '''
+    
     if c.isPrime:
         drive.withStop( -300, 300, 0.600 ) #was -250, 250, 0.550 #correct code
     else:
         drive.withStop( -250, 250, 0.755 ) #was 0.750
     '''
-    SpinCW90()
+    drive.spinCW90() #download the scripted turn
+    '''
         
 def waitForLego(x):
     print "waitForLego"
@@ -224,7 +220,23 @@ def newCubeTest():
     
     drive.withStop(50, 50, 1.50)
 '''
-     
+
+def podToFrisbee():
+    drive.withStop(-50, 150, 2.00)
+    t.sleep( 0.50 )
+    move.cubeHolderArmParallel()
+    drive.withStop(-200, -200, 7.00 )
+    #drive.withStop( 0, 150, 2.50)
+    move.grabberArmStraightUp()
+    drive.withStop(-50, 150, 2.00)
+    drive.withStop(200, 200, 1.50)
+    drive.withStop(-200, -200, 3.5)
+    #DEBUG("msg")
+    drive.withStop( -250, 250, 0.72 ) #was 0.750
+    
+    
+    
+    
 def grabFrisbee():
     link.enable_servo(1)
     link.enable_servo(2)
@@ -248,7 +260,7 @@ def grabFrisbee():
     
 
 def moveToFrisbee():
-    link.create_connect()
+    '''link.create_connect()
     if c.isPrime:
         print "Running Prime"
     else:
@@ -256,6 +268,7 @@ def moveToFrisbee():
 
     link.set_servo_position( c.grabberArm, c.grabberArmFrisbeeAproach)
     link.enable_servo(c.grabberArm)
+    '''
     #move.movegrabberArm(c.grabberArmStraightUp, 10) 
     t.sleep(2)
         
@@ -263,7 +276,7 @@ def moveToFrisbee():
     while ( link.analog_et(c.ETport) < 425):
         pass
     print link.analog_et(c.ETport)
-    drive.withStop(50, 50, 0.60)
+    drive.withStop(25, 50, 0.20)
     '''
     drive.noStop(100, 100, 0)
     while ( link.analog_et(c.ETport) > 350):
