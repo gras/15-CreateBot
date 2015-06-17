@@ -13,13 +13,14 @@ import actions as act
 def main():
     
     act.init()
-    '''    
+      
     act.driveToMesa() #using ET
     act.turnToMesa()
     
     act.driveToBlock()
     
     act.grabBot()
+    #act.DEBUG("swag")
      
     act.driveAndReset()
     
@@ -27,10 +28,8 @@ def main():
     
     #act.waitForLego(25)
     act.checkColorAndDrive()
-    '''
     act.podToFrisbee()
     act.moveToFrisbee()
-    act.DEBUG("swag")
     
     
     #act.newCubeTest()

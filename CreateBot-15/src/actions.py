@@ -71,7 +71,7 @@ def turnToMesa():
     else:
         drive.withStop( -250, 250, 0.755 ) #was 0.750
     '''
-    drive.spinCW90() #download the scripted turn
+    drive.spinCW90() #download and execute the scripted turn
     '''
         
 def waitForLego(x):
@@ -83,7 +83,7 @@ def driveToBlock():
     print "driveToBlock"
     move.cubeHolderArmBackMesa()
     if c.isPrime:
-        drive.withStop( 100, 100, 1.800 )
+        drive.withStop( 100, 100, 1.400 )
     else:    
         drive.withStop( 100, 100, 2)
 
@@ -95,8 +95,7 @@ def grabBot():
     
     #using grabberArm as a move
     move.grabberArmUp( 10 )
-    t.sleep( .500 )
-    
+    t.sleep( 5.500 )
     move.closeGrabber()
     t.sleep(0.500 )
     
@@ -155,9 +154,9 @@ def dumpPod():
     #drive.withStop(100, 100, 6.0)
     move.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)
-    t.sleep(15)#wait for lego
+    #t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.0)
-    t.sleep(5.00)#wait for lego
+    #t.sleep(5.00)#wait for lego
     drive.withStop(-50, 50, 4.00)
     move.cubeHolderArmParallel()
     if c.isPrime:
@@ -222,9 +221,11 @@ def newCubeTest():
 '''
 
 def podToFrisbee():
+    link.enable_servo(0)
     drive.withStop(-50, 150, 2.00)
     t.sleep( 0.50 )
     move.cubeHolderArmParallel()
+    move.grabberArmRelease()
     drive.withStop(-200, -200, 7.00 )
     #drive.withStop( 0, 150, 2.50)
     move.grabberArmStraightUp()
@@ -232,7 +233,8 @@ def podToFrisbee():
     drive.withStop(200, 200, 1.50)
     drive.withStop(-200, -200, 3.5)
     #DEBUG("msg")
-    drive.withStop( -250, 250, 0.72 ) #was 0.750
+    drive.withStop( -250, 250, 0.70 ) #was 0.65
+    
     
     
     
@@ -276,7 +278,9 @@ def moveToFrisbee():
     while ( link.analog_et(c.ETport) < 425):
         pass
     print link.analog_et(c.ETport)
+    drive.withStop(0, 0, 0)
     drive.withStop(25, 50, 0.20)
+    drive.withStop(-100, -100, .3)
     '''
     drive.noStop(100, 100, 0)
     while ( link.analog_et(c.ETport) > 350):

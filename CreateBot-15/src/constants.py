@@ -21,6 +21,7 @@ cubeHolderArm = 3
 
 grabberArmUp = 200 #was 250
 grabberArmStraightUp = 550
+grabberArmMid = 650 #was 550
 grabberArmDrop = 1000
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
