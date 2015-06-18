@@ -25,6 +25,7 @@ grabberArmMid = 650 #was 550
 grabberArmDrop = 1000
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
+grabberArmGrabFrisbee = 750
 
 cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1900 #was 1800
@@ -80,7 +81,7 @@ if isClone:
     cubeHolderArmBackMesa = 100 # 40 before
     #cubeholderArmSlightUp = 
     
-    grabberArmUp = 120
+    gArmUp = 120
     grabberArmStraightUp = 400
     grabberArmMid = 650 #was 550
     grabberArmBack = 850 

@@ -139,24 +139,26 @@ def endDrive():
 def checkColorAndDrive():
     print "checkColorAndDrive"
     check = s.checkForBotGalOrPod()
+    backAwayFromBin()
     print check
     if check == c.seeGreen:
-        print "dump pod"
         dumpPod()
+        podToFrisbee()
     elif check == c.seeRed:
-        print "dump botgal"
         dumpBotgal()
     else:
-        print "i see nothing,"
         parkInSafePlace()
 
-def dumpPod():
-    #drive.withStop(100, 100, 6.0)
+def backAwayFromBin():
+    print "back Away From Bin"
     move.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)
     #t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.0)
     #t.sleep(5.00)#wait for lego
+
+def dumpPod():
+    print "dump pod"
     drive.withStop(-50, 50, 4.00)
     move.cubeHolderArmParallel()
     if c.isPrime:
@@ -167,19 +169,10 @@ def dumpPod():
     link.enable_servo(c.grabber)
     move.moveGrabber(c.grabberOpen, 20)
     t.sleep (2.000)
-    print "enable grabber"
-    """
-    link.enable_servo(c.grabberArm)
-    move.grabberArmRelease()
-    t.sleep(2.00)
-    """
+
     
 def dumpBotgal():
-    move.cubeHolderArmMid()
-    drive.withStop(-100, -100, 4.00)# 2.500
-    t.sleep(15)#wait for lego
-    drive.withStop(-100, -100, 1.00)
-    t.sleep(5.00)
+    print "dump botgal"
     drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
     move.cubeHolderArmParallel()
@@ -190,11 +183,7 @@ def dumpBotgal():
     t.sleep (1.000)
     
 def parkInSafePlace():
-    move.cubeHolderArmMid()
-    drive.withStop(-100, -100, 4.00)# 2.500
-    t.sleep(15)#wait for lego
-    drive.withStop(-100, -100, 1.00)
-    t.sleep(5.00)
+    print "i see nothing,"
     drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
     t.sleep(5.00)
@@ -231,9 +220,10 @@ def podToFrisbee():
     move.grabberArmStraightUp()
     drive.withStop(-50, 150, 2.00)
     drive.withStop(200, 200, 1.50)
+    DEBUG("afiojafjioaf")
     drive.withStop(-200, -200, 3.5)
-    #DEBUG("msg")
     drive.withStop( -250, 250, 0.70 ) #was 0.65
+    
     
     
     
@@ -248,7 +238,8 @@ def grabFrisbee():
     t.sleep(1.00)
     move.frisbeeGrabberOpen()
     t.sleep(1.00)
-    move.grabberArmMid()
+    move.grabberArmGrabFrisbee()
+    #move.grabberArmMid()
     t.sleep(2.00)
     move.midCloseGrabber()
     t.sleep(1.00)

@@ -20,8 +20,7 @@ def main():
     act.driveToBlock()
     
     act.grabBot()
-    #act.DEBUG("swag")
-     
+         
     act.driveAndReset()
     
     act.endDrive()
@@ -35,10 +34,10 @@ def main():
     #act.newCubeTest()
     
     print "Working"
-    act.moveToFrisbee()
+    #act.moveToFrisbee()
     act.grabFrisbee()
     act.frisbeeToBotgal()
-    act.DEBUG("Yup")
+    act.DEBUG("swag")
 
     
     #act.grabCubes()
