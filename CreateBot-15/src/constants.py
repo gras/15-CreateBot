@@ -38,7 +38,7 @@ cubeHolderArmMidDown = 200 # for optimization
 cubeHolderArmBackMesa = 0 # 30 before
 
 frisbeeGrabberOpen = 80
-frisbeeGrabberClose = 2000
+frisbeeGrabberClose = 1100
 
 
 grabberClosed = 150

@@ -14,6 +14,7 @@ import constants as c
 import movement as move
 import drive
 import sensor as s
+from constants import grabberArmMid, grabberArm, grabberArmDown
 #from kovan import create_spin_CW
 # from time import sleep
 
@@ -47,22 +48,24 @@ def init():
     move.gripCubes()
     link.enable_servos()  
     
+    # ends at mesa facing north
 def driveToMesa():
     print "driveToMesa"
     move.cubeHolderArmSlightBack()
     drive.noStop( 100, 100, 2.0 )
-    drive.withStop( 200, 200, 3.5) #was 3.3
+    drive.withStop( 200, 200, 3.4) #was 3.3
     drive.noStop(-50, -50, 0)
     while ( link.analog_et(c.ETport) > 350):
         pass
     print link.analog_et(c.ETport)
     if c.isPrime:
-        drive.withStop(-75, -75, 0.65) #was 1.0 then 0.60
+        drive.withStop(-75, -75, 0.50) 
     else:
         drive.withStop(-50, -50, 0.45) #.65
         
 
 # turns to the right so that the cubeHolderArm can sweep the mesa
+# at west wall facing east
 def turnToMesa():
     print "turnToMesa"
     
@@ -79,6 +82,7 @@ def waitForLego(x):
     t.sleep(x)
 
 # sweeps part of the mesa. drives to the pod or botgal
+# Facing east
 def driveToBlock():
     print "driveToBlock"
     move.cubeHolderArmBackMesa()
@@ -95,7 +99,7 @@ def grabBot():
     
     #using grabberArm as a move
     move.grabberArmUp( 10 )
-    t.sleep( 5.500 )
+    t.sleep( .5 )
     move.closeGrabber()
     t.sleep(0.500 )
     
@@ -104,6 +108,7 @@ def grabBot():
     link.disable_servo( c.grabberArm)
      
 # sweeps more of the mesa and stops to back up in order to change cubeHolderArm position
+# at west wall facing east
 def driveAndReset():
     print "driveAndReset"
     drive.withStop( 100, 100, 3.450 ) #was 102,100
@@ -111,7 +116,7 @@ def driveAndReset():
     move.cubeHolderArmUp()
     drive.withStop( -250, -250, 2.00)# was -100,-100,6.4
 
-# sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin
+# sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin. Faces east
 def endDrive():
     print "endDrive"
     move.cubeHolderArmMesa()
@@ -135,7 +140,7 @@ def endDrive():
         t.sleep( 1.00 )
         drive.withStop( 103, 100, 5.300 )  #was 100,100 
     
-    
+    # depends on which sub method was run
 def checkColorAndDrive():
     print "checkColorAndDrive"
     check = s.checkForBotGalOrPod()
@@ -144,11 +149,11 @@ def checkColorAndDrive():
     if check == c.seeGreen:
         dumpPod()
         podToFrisbee()
-    elif check == c.seeRed:
+    else :
         dumpBotgal()
-    else:
-        parkInSafePlace()
-
+        botgalToFrisbee()
+    
+        # facing east 
 def backAwayFromBin():
     print "back Away From Bin"
     move.cubeHolderArmMid()
@@ -156,9 +161,12 @@ def backAwayFromBin():
     #t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.0)
     #t.sleep(5.00)#wait for lego
-
+    
+    # ends at south wall
 def dumpPod():
     print "dump pod"
+    link.enable_servo(grabberArm)
+    move.movegrabberArm(grabberArmMid)
     drive.withStop(-50, 50, 4.00)
     move.cubeHolderArmParallel()
     if c.isPrime:
@@ -166,11 +174,26 @@ def dumpPod():
     else:    
         drive.withStop( 100, 100, 4.0)
     drive.withStop(50, -50, 4.00)
-    link.enable_servo(c.grabber)
+    move.movegrabberArm(grabberArmDown, 20)
     move.moveGrabber(c.grabberOpen, 20)
     t.sleep (2.000)
 
+def podToFrisbee():
+    link.enable_servo(0)
+    drive.withStop(-50, 150, 2.00)
+    t.sleep( 0.50 )
+    move.cubeHolderArmParallel()
+    move.grabberArmRelease()
+    drive.withStop(-200, -200, 7.00 )
+    #drive.withStop( 0, 150, 2.50)
+    move.grabberArmStraightUp()
+    drive.withStop(-50, 150, 2.00)
+    drive.withStop(200, 200, 1.50)
+    DEBUG("afiojafjioaf")
+    drive.withStop(-200, -200, 3.5)
+    drive.withStop( -250, 250, 0.70 ) #was 0.65
     
+    # goes to north wall
 def dumpBotgal():
     print "dump botgal"
     drive.withStop(100, 100, 1.0)
@@ -181,6 +204,11 @@ def dumpBotgal():
     drive.noStop(0,0,0)
     move.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
+    
+def botgalToFrisbee():
+    print("botgaltofrisbee")
+    drive.withStop(200, 200, 2)
+    DEBUG("meh")
     
 def parkInSafePlace():
     print "i see nothing,"
@@ -209,20 +237,7 @@ def newCubeTest():
     drive.withStop(50, 50, 1.50)
 '''
 
-def podToFrisbee():
-    link.enable_servo(0)
-    drive.withStop(-50, 150, 2.00)
-    t.sleep( 0.50 )
-    move.cubeHolderArmParallel()
-    move.grabberArmRelease()
-    drive.withStop(-200, -200, 7.00 )
-    #drive.withStop( 0, 150, 2.50)
-    move.grabberArmStraightUp()
-    drive.withStop(-50, 150, 2.00)
-    drive.withStop(200, 200, 1.50)
-    DEBUG("afiojafjioaf")
-    drive.withStop(-200, -200, 3.5)
-    drive.withStop( -250, 250, 0.70 ) #was 0.65
+
     
     
     
