@@ -17,18 +17,18 @@ def main():
     act.driveToMesa() #using ET
     
     act.turnToMesa()
-    
+
     act.driveToBlock()
-    
+
     act.grabBot()
-         
+
     act.driveAndReset()
-    
+
     act.endDrive()
-    
+
     #act.waitForLego(25)
     act.checkColorAndDrive()
-    act.podToFrisbee()
+    '''act.podToFrisbee()
     act.moveToFrisbee()
     
     
@@ -37,7 +37,7 @@ def main():
     print "Working"
     #act.moveToFrisbee()
     act.grabFrisbee()
-    act.frisbeeToBotgal()
+    act.frisbeeToBotgal()'''
     act.DEBUG("swag")
 
     

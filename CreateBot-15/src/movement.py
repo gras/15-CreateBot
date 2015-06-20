@@ -146,6 +146,22 @@ def movegrabberArm( endPos, speed=10):
     
     link.set_servo_position( c.grabberArm, endPos )
     t.sleep( 0.010 )
+
+def moveFrisbeeGrabber( endPos, speed=10):
+    now = link.get_servo_position( c.frisbeeGrabber )
+    if now > endPos:
+        speed = -speed
+    #if
+    
+    for i in range ( now, endPos, speed ):
+        link.set_servo_position( c.frisbeeGrabber, i )
+        t.sleep( 0.010 )
+    #for
+    
+    link.set_servo_position( c.frisbeeGrabber, endPos )
+    t.sleep( 0.010 )
+
+
    
 def cubeHolderArmCompleteDown():
     movecubeHolderArm( c.cubeHolderArmCompleteDown, 10 )
@@ -174,8 +190,8 @@ def cubeHolderArmParallel():
 #def cubeHolderArmSlightUp():
 #   movecubeHolderArm( c.cubeHolderArmSlightUp, 5)
     
-def grabberArmStraightUp():
-    movegrabberArm( c.grabberArmStraightUp, 10 ) 
+def grabberArmStraightUp(speed = 10):
+    movegrabberArm( c.grabberArmStraightUp, speed ) 
        
 def grabberArmUp( speed ):
     movegrabberArm( c.grabberArmUp, speed )
@@ -202,8 +218,8 @@ def grabberArmGrabFrisbee():
     movegrabberArm( c.grabberArmGrabFrisbee, 10 )
 
 def frisbeeGrabberOpen():
-    link.set_servo_position( c.frisbeeGrabber, c.frisbeeGrabberOpen )
+    moveFrisbeeGrabber(c.frisbeeGrabberOpen, 10)
 
 def frisbeeGrabberClose():
-    link.set_servo_position( c.frisbeeGrabber, c.frisbeeGrabberClose )
+    moveFrisbeeGrabber(c.frisbeeGrabberClose, 100)
     

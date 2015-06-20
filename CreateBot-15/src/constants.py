@@ -25,7 +25,7 @@ grabberArmMid = 650 #was 550
 grabberArmDrop = 1000
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
-grabberArmGrabFrisbee = 750
+grabberArmGrabFrisbee = 800
 
 cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1900 #was 1800
@@ -42,7 +42,7 @@ frisbeeGrabberClose = 1100
 
 
 grabberClosed = 150
-grabberMidClosed = 1100
+grabberMidClosed = 1000
 grabberOpen = 1600
 
 #motor ports
@@ -81,7 +81,7 @@ if isClone:
     cubeHolderArmBackMesa = 100 # 40 before
     #cubeholderArmSlightUp = 
     
-    gArmUp = 120
+    grabberArmUp = 120
     grabberArmStraightUp = 400
     grabberArmMid = 650 #was 550
     grabberArmBack = 850 

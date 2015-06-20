@@ -15,6 +15,7 @@ import movement as move
 import drive
 import sensor as s
 from constants import grabberArmMid, grabberArm, grabberArmDown
+from movement import frisbeeGrabberOpen
 #from kovan import create_spin_CW
 # from time import sleep
 
@@ -53,7 +54,10 @@ def driveToMesa():
     print "driveToMesa"
     move.cubeHolderArmSlightBack()
     drive.noStop( 100, 100, 2.0 )
-    drive.withStop( 200, 200, 3.4) #was 3.3
+    if c.isPrime:
+        drive.withStop( 200, 200, 3.4) #was 3.3
+    else:
+        drive.withStop(200, 200, 3.5)
     drive.noStop(-50, -50, 0)
     while ( link.analog_et(c.ETport) > 350):
         pass
@@ -87,9 +91,9 @@ def driveToBlock():
     print "driveToBlock"
     move.cubeHolderArmBackMesa()
     if c.isPrime:
-        drive.withStop( 100, 100, 1.400 )
+        drive.withStop( 100, 100, 1.5 )
     else:    
-        drive.withStop( 100, 100, 2)
+        drive.withStop( 100, 100, 1.6)
 
 # grabs BotGal and brings her down to the table (off the mesa)
 def grabBot():
@@ -132,7 +136,7 @@ def endDrive():
         drive.withStop( 100, 100, 5.300 )  #was 100,100
     else:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
-        move.opencubeHolder() #dump blocks
+        move.opencubeHolder( 1 ) #dump blocks
         t.sleep(1.0)
         move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
@@ -149,11 +153,22 @@ def checkColorAndDrive():
     if check == c.seeGreen:
         dumpPod()
         podToFrisbee()
+        moveToEastWall()
+        moveToFrisbee()
+        grabFrisbee() 
     else :
         dumpBotgal()
         botgalToFrisbee()
-    
-        # facing east 
+        moveToEastWall()
+        moveToFrisbee()
+        grabFrisbee()
+        drive.withStop(100, 100, 4.5)
+        drive.withStop( 300, -300, 0.600 )
+        drive.withStop(100, 100, 2)
+        move.grabberArmDown()
+        frisbeeGrabberOpen() 
+        
+        
 def backAwayFromBin():
     print "back Away From Bin"
     move.cubeHolderArmMid()
@@ -189,10 +204,11 @@ def podToFrisbee():
     move.grabberArmStraightUp()
     drive.withStop(-50, 150, 2.00)
     drive.withStop(200, 200, 1.50)
-    DEBUG("afiojafjioaf")
+        
+def moveToEastWall():
     drive.withStop(-200, -200, 3.5)
     drive.withStop( -250, 250, 0.70 ) #was 0.65
-    
+
     # goes to north wall
 def dumpBotgal():
     print "dump botgal"
@@ -205,10 +221,12 @@ def dumpBotgal():
     move.moveGrabber(c.grabberOpen, 10)
     t.sleep (1.000)
     
+    
 def botgalToFrisbee():
     print("botgaltofrisbee")
+    link.enable_servo(0)
+    move.grabberArmStraightUp()
     drive.withStop(200, 200, 2)
-    DEBUG("meh")
     
 def parkInSafePlace():
     print "i see nothing,"
@@ -245,8 +263,8 @@ def newCubeTest():
     
     
 def grabFrisbee():
-    link.enable_servo(1)
-    link.enable_servo(2)
+    link.enable_servo(c.grabber)
+    link.enable_servo(c.frisbeeGrabber)
     #move.grabberArmMid()
     t.sleep(1.00)
     move.openGrabber()
@@ -262,7 +280,7 @@ def grabFrisbee():
     t.sleep(1.00)
     move.SlowOpenGrabber()
     t.sleep(1.00)
-    move.grabberArmStraightUp()
+    move.grabberArmStraightUp(5)
     t.sleep(2.00)
     
     
