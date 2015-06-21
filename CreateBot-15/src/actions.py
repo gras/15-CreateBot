@@ -14,7 +14,7 @@ import constants as c
 import movement as move
 import drive
 import sensor as s
-from constants import grabberArmMid, grabberArm, grabberArmDown
+from constants import grabberArmMid, grabberArm, grabberArmDown, frisbeeGrabber
 from movement import frisbeeGrabberOpen
 #from kovan import create_spin_CW
 # from time import sleep
@@ -36,13 +36,18 @@ def init():
         print "Running Clone"
     move.initMoves()
     
+    #################################
+    # link.enable_servos()          #    TEST
+    # move.grabberArmStraightUp(10) #    CODE
+    #################################
+
     print "Press the A button to start or the B button to exit"
     while not link.a_button() and not link.b_button():
         pass
     if link.b_button_clicked():
         DEBUG("exited")
     print "Starting run..."    
-    #link.wait_for_light(0) 
+    link.wait_for_light(0) 
     
     c.stoptime= link.seconds()
     #link.shut_down_in(119.0)
@@ -77,6 +82,7 @@ def turnToMesa():
         drive.withStop( -300, 300, 0.600 ) #was -250, 250, 0.550 #correct code
     else:
         drive.withStop( -250, 250, 0.755 ) #was 0.750
+    move.grabberArmDown()
     '''
     drive.spinCW90() #download and execute the scripted turn
     '''
@@ -156,6 +162,9 @@ def checkColorAndDrive():
         moveToEastWall()
         moveToFrisbee()
         grabFrisbee() 
+        arcTurn()
+        
+        
     else :
         dumpBotgal()
         botgalToFrisbee()
@@ -257,10 +266,17 @@ def newCubeTest():
 
 
     
-    
-    
-    
-    
+# backwards 90 degree arc    
+def arcTurn():
+        move.grabberArmStraightUp(10)
+        move.cubeHolderArmParallel()
+        drive.withStop(300, 0, 1.2)
+        move.grabberArmHover()
+        drive.withStop(100, 100, 2.25)
+        drive.withStop(300, -300, .6)
+        drive.noStop(100, 100, 9)
+        drive.withStop(300, -300, .6)
+        move.frisbeeGrabberOpen()
     
 def grabFrisbee():
     link.enable_servo(c.grabber)

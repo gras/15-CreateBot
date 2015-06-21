@@ -13,9 +13,9 @@ import actions as act
 def main():
     
     act.init()
-      
+
     act.driveToMesa() #using ET
-    
+
     act.turnToMesa()
 
     act.driveToBlock()
@@ -26,8 +26,9 @@ def main():
 
     act.endDrive()
 
-    #act.waitForLego(25)
+    act.waitForLego(25)
     act.checkColorAndDrive()
+    act.DEBUG("Done")
     '''act.podToFrisbee()
     act.moveToFrisbee()
     

@@ -25,7 +25,9 @@ grabberArmMid = 650 #was 550
 grabberArmDrop = 1000
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
-grabberArmGrabFrisbee = 800
+grabberArmGrabFrisbee = 700 #800
+grabberArmHover = 1650
+grabberArmClear = 1385
 
 cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1900 #was 1800
