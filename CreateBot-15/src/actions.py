@@ -14,8 +14,8 @@ import constants as c
 import movement as move
 import drive
 import sensor as s
-from constants import grabberArmMid, grabberArm, grabberArmDown, frisbeeGrabber
-from movement import frisbeeGrabberOpen
+#from constants import grabberArmMid, grabberArm, grabberArmDown, frisbeeGrabber
+#from movement import frisbeeGrabberOpen
 #from kovan import create_spin_CW
 # from time import sleep
 
@@ -162,7 +162,7 @@ def checkColorAndDrive():
         moveToEastWall()
         moveToFrisbee()
         grabFrisbee() 
-        arcTurn()
+        deliverFrisbeeToStartBox()
         
         
     else :
@@ -171,11 +171,7 @@ def checkColorAndDrive():
         moveToEastWall()
         moveToFrisbee()
         grabFrisbee()
-        drive.withStop(100, 100, 4.5)
-        drive.withStop( 300, -300, 0.600 )
-        drive.withStop(100, 100, 2)
-        move.grabberArmDown()
-        frisbeeGrabberOpen() 
+        deliverFrisbeeToMAA()
         
         
 def backAwayFromBin():
@@ -189,21 +185,22 @@ def backAwayFromBin():
     # ends at south wall
 def dumpPod():
     print "dump pod"
-    link.enable_servo(grabberArm)
-    move.movegrabberArm(grabberArmMid)
+    link.enable_servo(c.grabberArm) 
+    move.movegrabberArm(c.grabberArmMid)
     drive.withStop(-50, 50, 4.00)
-    move.cubeHolderArmParallel()
+    #move.cubeHolderArmParallel()
     if c.isPrime:
         drive.withStop( 100, 100, 4.5 )
     else:    
         drive.withStop( 100, 100, 4.0)
     drive.withStop(50, -50, 4.00)
-    move.movegrabberArm(grabberArmDown, 20)
+    move.movegrabberArm(c.grabberArmDown, 20) 
     move.moveGrabber(c.grabberOpen, 20)
     t.sleep (2.000)
+    move.cubeHolderArmParallel()
+    move.grabberArmClear()
 
 def podToFrisbee():
-    link.enable_servo(0)
     drive.withStop(-50, 150, 2.00)
     t.sleep( 0.50 )
     move.cubeHolderArmParallel()
@@ -243,40 +240,17 @@ def parkInSafePlace():
     drive.withStop(-50, 50, 4.00)
     t.sleep(5.00)
     move.cubeHolderArmParallel()
-
-'''
-def newCubeTest():
-    move.cubeHolderArmUp()
-    move.opencubeHolderWide() 
-    drive.withStop(100, 100, 4.00)
-    move.cubeHolderArmCompleteDown()
-    t.sleep(1.00)
-    
-    drive.withStop(100, 100, 3.00)
-    t.sleep(1.00)
-    move.cubeHolderArmCompleteDown()
-    t.sleep(.50)
-    
-    move.closecubeHolder()
-    t.sleep(1.00)
-    move.cubeHolderArmUp()
-    
-    drive.withStop(50, 50, 1.50)
-'''
-
-
     
 # backwards 90 degree arc    
-def arcTurn():
-        move.grabberArmStraightUp(10)
-        move.cubeHolderArmParallel()
-        drive.withStop(300, 0, 1.2)
-        move.grabberArmHover()
-        drive.withStop(100, 100, 2.25)
-        drive.withStop(300, -300, .6)
-        drive.noStop(100, 100, 9)
-        drive.withStop(300, -300, .6)
-        move.frisbeeGrabberOpen()
+def deliverFrisbeeToStartBox():
+    move.cubeHolderArmParallel()
+    drive.withStop(300, 0, 1.2)
+    move.grabberArmHover()
+    drive.withStop(100, 100, 2.25)
+    drive.withStop(300, -300, .6)
+    drive.noStop(100, 100, 9)
+    drive.withStop(300, -300, .6)
+    move.frisbeeGrabberOpen()
     
 def grabFrisbee():
     link.enable_servo(c.grabber)
@@ -289,28 +263,27 @@ def grabFrisbee():
     t.sleep(1.00)
     move.grabberArmGrabFrisbee()
     #move.grabberArmMid()
-    t.sleep(2.00)
+    t.sleep(1.00)
     move.midCloseGrabber()
     t.sleep(1.00)
     move.frisbeeGrabberClose()
     t.sleep(1.00)
     move.SlowOpenGrabber()
     t.sleep(1.00)
-    move.grabberArmStraightUp(5)
-    t.sleep(2.00)
+    move.grabberArmBack(5)
+    t.sleep(1.00)
     
+    
+def deliverFrisbeeToMAA():
+    drive.withStop(100, 100, 4.5)
+    drive.withStop( 300, -300, 0.600 )
+    drive.withStop(100, 100, 2)
+    move.grabberArmDown()
+    move.frisbeeGrabberOpen() 
     
 
 def moveToFrisbee():
-    '''link.create_connect()
-    if c.isPrime:
-        print "Running Prime"
-    else:
-        print "Running Clone"
-
-    link.set_servo_position( c.grabberArm, c.grabberArmFrisbeeAproach)
-    link.enable_servo(c.grabberArm)
-    '''
+    
     #move.movegrabberArm(c.grabberArmStraightUp, 10) 
     t.sleep(2)
         
@@ -321,13 +294,7 @@ def moveToFrisbee():
     drive.withStop(0, 0, 0)
     drive.withStop(25, 50, 0.20)
     drive.withStop(-100, -100, .3)
-    '''
-    drive.noStop(100, 100, 0)
-    while ( link.analog_et(c.ETport) > 350):
-        pass
-    print link.analog_et(c.ETport)
-    drive.withStop(-50, -50, 0.45)
-    '''
+    
     
     
 def frisbeeToBotgal():

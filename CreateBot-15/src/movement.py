@@ -199,6 +199,9 @@ def grabberArmUp( speed ):
 
 def grabberArmClear():
     movegrabberArm( c.grabberArmClear, 10 )
+
+def grabberArmBack(speed):
+    movegrabberArm( c.grabberArmBack, speed )
     
 def grabberArmDown():
     movegrabberArm( c.grabberArmDown, 10 )

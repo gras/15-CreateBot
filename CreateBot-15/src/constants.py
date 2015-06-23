@@ -20,14 +20,15 @@ frisbeeGrabber = 2
 cubeHolderArm = 3
 
 grabberArmUp = 200 #was 250
+grabberArmBack = 375
 grabberArmStraightUp = 550
 grabberArmMid = 650 #was 550
+grabberArmGrabFrisbee = 675 #700
 grabberArmDrop = 1000
+grabberArmClear = 1385
+grabberArmHover = 1500
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
-grabberArmGrabFrisbee = 700 #800
-grabberArmHover = 1650
-grabberArmClear = 1385
 
 cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1900 #was 1800
