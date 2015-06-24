@@ -25,7 +25,7 @@ grabberArmStraightUp = 550
 grabberArmMid = 650 #was 550
 grabberArmGrabFrisbee = 675 #700
 grabberArmDrop = 1000
-grabberArmClear = 1385
+grabberArmClear = 1360
 grabberArmHover = 1500
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
@@ -45,6 +45,7 @@ frisbeeGrabberClose = 1100
 
 
 grabberClosed = 150
+grabberClearClosed = 575
 grabberMidClosed = 1000
 grabberOpen = 1600
 

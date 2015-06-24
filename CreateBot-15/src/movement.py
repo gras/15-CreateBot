@@ -10,8 +10,9 @@ import kovan as link
 import constants as c
 import time as t
 #from constants import grabberClosed
-import actions as act 
-from constants import frisbeeGrabberOpen, grabberArmStraightUp
+
+from constants import frisbeeGrabberOpen, grabberArmStraightUp,\
+    grabberClearClosed
 from sensor import testETScanner
 
 
@@ -55,10 +56,12 @@ def testGrabber():
     print "testing grabber"
     link.set_servo_position( c.grabber, c.grabberClosed)
     link.enable_servo( c.grabber)
-    closeGrabber()
+    grabberClose()
     t.sleep(.5)
-    openGrabber()
+    grabberOpen()
     t.sleep(.5)#was.4
+    grabberClearClosed()
+    t.sleep(.5)
     link.disable_servo(c.grabber)
     
 def testFrisbeeGrabber():
@@ -111,17 +114,20 @@ def movecubeHolderArm( endPos, speed=10 ):
     
 
     
-def SlowOpenGrabber():
+def grabberSlowOpen():
     moveGrabber( c.grabberOpen, 5 )
     
-def midCloseGrabber():
+def grabberMidClose():
     moveGrabber( c.grabberMidClosed, 5 )
     
-def openGrabber():
+def grabberOpen():
     link.set_servo_position( c.grabber, c.grabberOpen )
     
-def closeGrabber():
+def grabberClose():
     link.set_servo_position( c.grabber, c.grabberClosed )
+
+def grabberClearClosed():
+    link.set_servo_position( c.grabber, c.grabberClearClosed )
 
 def moveGrabber( endPos, speed=10 ):
     now = link.get_servo_position( c.grabber )
@@ -203,8 +209,8 @@ def grabberArmClear():
 def grabberArmBack(speed):
     movegrabberArm( c.grabberArmBack, speed )
     
-def grabberArmDown():
-    movegrabberArm( c.grabberArmDown, 10 )
+def grabberArmDown(speed=10):
+    movegrabberArm( c.grabberArmDown, speed )
 
 def grabberArmHover():
     movegrabberArm( c.grabberArmHover, 10 )

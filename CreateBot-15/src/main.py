@@ -26,26 +26,12 @@ def main():
 
     act.endDrive()
 
-    act.waitForLego(25)
-    act.checkColorAndDrive()
-    act.DEBUG("Done")
-    '''act.podToFrisbee()
-    act.moveToFrisbee()
-    
-    
-    #act.newCubeTest()
-    
-    print "Working"
-    #act.moveToFrisbee()
-    act.grabFrisbee()
-    act.frisbeeToBotgal()'''
-    act.DEBUG("swag")
+    act.waitForLego(20)
 
+    act.checkColorAndDrive()
     
-    #act.grabCubes()
-    #act.shutDown()
-    #act.kill()
-    
+    act.shutDown()
+     
     
 
 if __name__ == "__main__":
