@@ -8,11 +8,8 @@ import constants as c
 import time
 import actions as act
 
-def checkForBotGalOrPod() :
+def lookForGreen() :
     print "cameraTrack"
-    #link.camera_update()
-    #link.camera_update()
-    #time.sleep( 0.5 )
     link.camera_update()
     time.sleep (0.5)
     
@@ -36,15 +33,8 @@ def checkForBotGalOrPod() :
     if link.get_object_area( c.chanGreen, 0 ) >= c.blobSize:
         print "green"
         print link.get_object_area( c.chanGreen, 0 )  
-        return c.seeGreen
-    
-    elif link.get_object_area(c.chanRed, 0 ) >= c.blobSize:
-        print "red"
-        print link.get_object_area( c.chanRed, 0 )
-        return c.seeRed
-    else:
-        print "nothing found"
-        return c.seeNot
+        return True
+    return False
 
 def testETScanner():
     if link.analog_et(c.ETport) > 350:

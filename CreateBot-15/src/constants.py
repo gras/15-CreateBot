@@ -48,6 +48,7 @@ grabberClosed = 150
 grabberClearClosed = 575
 grabberMidClosed = 1000
 grabberOpen = 1600
+grabberOpenInit = 750
 
 #motor ports
 grabberArm = 0

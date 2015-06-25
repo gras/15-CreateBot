@@ -13,22 +13,21 @@ import actions as act
 def main():
     
     act.init()
-
     act.driveToMesa() #using ET
-
     act.turnToMesa()
-
     act.driveToBlock()
-
     act.grabBot()
-
     act.driveAndReset()
-
     act.endDrive()
-
     act.waitForLego(20)
-
-    act.checkColorAndDrive()
+    check = act.checkColorAndDrive()
+    act.moveToEastWall()
+    act.moveToFrisbee()
+    act.grabFrisbee() 
+    if check:
+        act.deliverFrisbeeToStartBox()
+    else :
+        act.deliverFrisbeeToNorthEndZone()
     
     act.shutDown()
      

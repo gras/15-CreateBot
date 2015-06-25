@@ -116,7 +116,8 @@ def grabBot():
     # using grabberArm as a move
     move.grabberArmDrop()
     link.disable_servo( c.grabberArm)
-     
+    t.sleep(2)
+    
 # sweeps more of the mesa and stops to back up in order to change cubeHolderArm position
 # at west wall facing east
 def driveAndReset():
@@ -125,6 +126,7 @@ def driveAndReset():
     drive.withStop( -100, -100, 0.250 )
     move.cubeHolderArmUp()
     drive.withStop( -250, -250, 2.00)# was -100,-100,6.4
+    
 
 # sweeps the mesa all the way to the bin and pushes the cubes and poms into the bin. Faces east
 def endDrive():
@@ -150,32 +152,23 @@ def endDrive():
         t.sleep( 1.00 )
         drive.withStop( 103, 100, 5.300 )  #was 100,100 
     
+    
     # depends on which sub method was run
 def checkColorAndDrive():
     print "checkColorAndDrive"
-    check = s.checkForBotGalOrPod()
+    check = s.lookForGreen()
     print check
-    if check == c.seeGreen:
+    if check :
         link.enable_servo(c.grabberArm) 
         move.grabberArmMid()
         backAwayFromBin()
         dumpPod()
         podToFrisbee()
-        moveToEastWall()
-        moveToFrisbee()
-        grabFrisbee() 
-        deliverFrisbeeToStartBox()
-        
-        
     else :
         backAwayFromBin()
         dumpBotgal()
         botgalToFrisbee()
-        moveToEastWall()
-        moveToFrisbee()
-        grabFrisbee()
-        deliverFrisbeeToMAA()
-        
+    return check    
         
 def backAwayFromBin():
     print "back Away From Bin"
@@ -263,7 +256,8 @@ def grabFrisbee():
     t.sleep(1.00)
     move.frisbeeGrabberOpen()
     t.sleep(1.00)
-    move.grabberArmGrabFrisbee()
+    move.grabberArmGrabFrisbee( 40 )
+    DEBUG("abcdefghijklmnopqrstuvwxyz")
     #move.grabberArmMid()
     t.sleep(1.00)
     move.grabberMidClose()
@@ -276,7 +270,9 @@ def grabFrisbee():
     t.sleep(1.00)
     
     
-def deliverFrisbeeToMAA():
+    
+    
+def deliverFrisbeeToNorthEndZone():
     drive.withStop(100, 100, 4.5)
     drive.withStop( 300, -300, 0.600 )
     drive.withStop(100, 100, 2)
@@ -294,7 +290,7 @@ def moveToFrisbee():
     print link.analog_et(c.ETport)
     drive.withStop(0, 0, 0)
     drive.withStop(25, 50, 0.20)
-    drive.withStop(-100, -100, .3)
+    #drive.withStop(-100, -100, .5)  #was .3
     
     
     
