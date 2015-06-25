@@ -21,6 +21,14 @@ def main():
     act.endDrive()
     act.waitForLego(20)
     check = act.checkColorAndDrive()
+    if check :
+        act.backAwayFromBin()
+        act.dumpPod()
+        act.podToFrisbee()
+    else :
+        act.backAwayFromBin()
+        act.dumpBotgal()
+        act.botgalToFrisbee()
     act.moveToEastWall()
     act.moveToFrisbee()
     act.grabFrisbee() 

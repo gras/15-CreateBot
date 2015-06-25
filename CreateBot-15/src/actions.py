@@ -158,20 +158,12 @@ def checkColorAndDrive():
     print "checkColorAndDrive"
     check = s.lookForGreen()
     print check
-    if check :
-        link.enable_servo(c.grabberArm) 
-        move.grabberArmMid()
-        backAwayFromBin()
-        dumpPod()
-        podToFrisbee()
-    else :
-        backAwayFromBin()
-        dumpBotgal()
-        botgalToFrisbee()
     return check    
         
 def backAwayFromBin():
     print "back Away From Bin"
+    link.enable_servo(c.grabberArm) 
+    move.grabberArmMid()
     move.cubeHolderArmMid()
     drive.withStop(-100, -100, 4.00)
     #t.sleep(15)#wait for lego
