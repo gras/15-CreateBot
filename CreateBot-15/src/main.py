@@ -13,6 +13,7 @@ import actions as act
 def main():
     
     act.init()
+    
     act.driveToMesa() #using ET
     act.turnToMesa()
     act.driveToBlock()
@@ -32,6 +33,7 @@ def main():
     act.moveToEastWall()
     act.moveToFrisbee()
     act.grabFrisbee() 
+    act.DEBUG("msg")
     if check:
         act.deliverFrisbeeToStartBox()
     else :

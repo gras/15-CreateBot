@@ -28,9 +28,9 @@ def initMoves():
 def testCubeHolder():
     print "testing cubeHolder"
     opencubeHolder( 0.2 )
-    #t.sleep(.5)
+    t.sleep(.5)
     closecubeHolder( 0.2 )
-    #t.sleep(.5) 
+    t.sleep(.5) 
 
 def testCubeHolderArm():
     print "testing cubeHolderArm"
@@ -61,7 +61,7 @@ def testGrabber():
     grabberClearClosed()
     t.sleep(.5)
     grabberOpenInit()
-    t.sleep(4)#was.4
+    t.sleep(1)#was.4
     grabberClearClosed()
     t.sleep(.5)
     link.disable_servo(c.grabber)
@@ -128,10 +128,12 @@ def grabberClose():
     link.set_servo_position( c.grabber, c.grabberClosed )
 
 def grabberClearClosed():
-    link.set_servo_position( c.grabber, c.grabberClearClosed )
+    #link.set_servo_position( c.grabber, c.grabberClearClosed )
+    moveGrabber( c.grabberClearClosed )
     
 def grabberOpenInit():
-    link.set_servo_position( c.grabber, c.grabberOpenInit )
+    #link.set_servo_position( c.grabber, c.grabberOpenInit )
+    moveGrabber( c.grabberOpenInit )
 
 def moveGrabber( endPos, speed=10 ):
     now = link.get_servo_position( c.grabber )
@@ -234,8 +236,8 @@ def grabberArmRelease():
 def grabberArmFrisbeeAproach():
     movegrabberArm( c.grabberArmFrisbeeAproach, 10 )
     
-def grabberArmGrabFrisbee():
-    movegrabberArm( c.grabberArmGrabFrisbee, 10 )
+def grabberArmGrabFrisbee( speed ):
+    movegrabberArm( c.grabberArmGrabFrisbee, speed )
 
 def frisbeeGrabberOpen():
     moveFrisbeeGrabber(c.frisbeeGrabberOpen, 10)

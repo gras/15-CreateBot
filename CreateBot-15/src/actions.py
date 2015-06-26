@@ -35,7 +35,7 @@ def init():
     else:
         print "Running Clone"
     move.initMoves()
-    
+        
     #################################
     # link.enable_servos()          #    TEST
     # move.grabberArmStraightUp(10) #    CODE
@@ -198,9 +198,11 @@ def podToFrisbee():
     drive.withStop(200, 200, 1.50)
         
 def moveToEastWall():
+    move.cubeHolderArmParallel()
     drive.withStop(-200, -200, 3.5)
     drive.withStop( -250, 250, 0.70 ) #was 0.65
-
+    
+   
     # goes to north wall
 def dumpBotgal():
     print "dump botgal"
@@ -230,7 +232,6 @@ def parkInSafePlace():
     
 # backwards 90 degree arc    
 def deliverFrisbeeToStartBox():
-    move.cubeHolderArmParallel()
     drive.withStop(300, 0, 1.2)
     move.grabberArmHover()
     drive.withStop(100, 100, 2.)
@@ -249,7 +250,7 @@ def grabFrisbee():
     move.frisbeeGrabberOpen()
     t.sleep(1.00)
     move.grabberArmGrabFrisbee( 40 )
-    DEBUG("abcdefghijklmnopqrstuvwxyz")
+    
     #move.grabberArmMid()
     t.sleep(1.00)
     move.grabberMidClose()
@@ -273,16 +274,16 @@ def deliverFrisbeeToNorthEndZone():
     
 
 def moveToFrisbee():
-    
-    t.sleep(2)
-        
+    #move.cubeHolderArmMesa()
+    t.sleep(2)        
     drive.noStop(-100, -100, 0)
     while ( link.analog_et(c.ETport) < 425):
         pass
     print link.analog_et(c.ETport)
     drive.withStop(0, 0, 0)
     drive.withStop(25, 50, 0.20)
-    #drive.withStop(-100, -100, .5)  #was .3
+    drive.withStop(100, 100, .15)  #was .3
+    
     
     
     
