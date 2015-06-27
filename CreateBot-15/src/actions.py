@@ -14,6 +14,7 @@ import constants as c
 import movement as move
 import drive
 import sensor as s
+from constants import isPrime
 #from constants import grabberArmMid, grabberArm, grabberArmDown, frisbeeGrabber
 #from movement import frisbeeGrabberOpen
 #from kovan import create_spin_CW
@@ -191,11 +192,13 @@ def podToFrisbee():
     t.sleep( 0.50 )
     move.cubeHolderArmParallel()
     move.grabberArmRelease()
-    drive.withStop(-200, -200, 6.75 )
-    #drive.withStop( 0, 150, 2.50)
+    if c.isPrime:
+        drive.withStop(-200, -200, 6.75 )
+    else:
+        drive.withStop(-200, -200, 6.50)
     move.grabberArmStraightUp()
     drive.withStop(-50, 150, 2.00)
-    drive.withStop(200, 200, 1.50)
+    drive.withStop(200, 200, 1.80)
         
 def moveToEastWall():
     move.cubeHolderArmParallel()
@@ -281,9 +284,12 @@ def moveToFrisbee():
         pass
     print link.analog_et(c.ETport)
     drive.withStop(0, 0, 0)
-    drive.withStop(25, 50, 0.20)
-    drive.withStop(100, 100, .15)  #was .3
-    
+    if isPrime:
+        drive.withStop(25, 50, 0.20)
+        drive.withStop(100, 100, .15)  #was .3
+    else:
+        pass
+        
     
     
     

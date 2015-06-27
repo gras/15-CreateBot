@@ -46,9 +46,10 @@ frisbeeGrabberClose = 1100
 
 grabberClosed = 150
 grabberClearClosed = 575
+grabberOpenInit = 750
 grabberMidClosed = 1000
 grabberOpen = 1600
-grabberOpenInit = 750
+
 
 #motor ports
 grabberArm = 0
@@ -73,25 +74,27 @@ clonePort = 15
 
 # define clone values here
 if isClone:
-    frisbeeGrabberOpen = 80
+    frisbeeGrabberOpen = 1000
     frisbeeGrabberClose = 2000
     
     cubeHolderArmCompleteDown = 2047
     cubeHolderArmDown = 1900
-    cubeHolderArmMesa = 1110
+    cubeHolderArmMesa = 1050
     cubeHolderArmMid = 600
     cubeHolderArmUp = 550
     cubeHolderArmSlightBack = 450
     cubeHolderArmMidDown = 200 # for optimization
-    cubeHolderArmBackMesa = 100 # 40 before
+    cubeHolderArmBackMesa = 150 # 40 before
     #cubeholderArmSlightUp = 
     
     grabberArmUp = 120
-    grabberArmStraightUp = 400
+    grabberArmStraightUp = 550
     grabberArmMid = 650 #was 550
     grabberArmBack = 850 
     grabberArmFrisbee = 1100
     grabberArmDown = 1840
     grabberArmFrisbeeAproach = 485
+    
+    
 
 #isClone
