@@ -131,8 +131,8 @@ def cubeHolderArmCompleteDown():
 def cubeHolderArmDown():
     movecubeHolderArm( c.cubeHolderArmDown, 10 )
     
-def cubeHolderArmUp():
-    movecubeHolderArm( c.cubeHolderArmUp, 10 )
+def cubeHolderArmUp(speed=10 ):
+    movecubeHolderArm( c.cubeHolderArmUp, speed )
     
 def cubeHolderArmSlightBack():
     movecubeHolderArm( c.cubeHolderArmSlightBack, 10 )
@@ -140,8 +140,8 @@ def cubeHolderArmSlightBack():
 def cubeHolderArmBackMesa():
     movecubeHolderArm( c.cubeHolderArmBackMesa, 5 )
     
-def cubeHolderArmMid():
-    movecubeHolderArm( c.cubeHolderArmMid, 10 )
+def cubeHolderArmMid(speed=10 ):
+    movecubeHolderArm( c.cubeHolderArmMid, speed )
     
 def cubeHolderArmMesa():
     movecubeHolderArm( c.cubeHolderArmMesa, 5 )

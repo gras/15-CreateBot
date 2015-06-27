@@ -47,7 +47,7 @@ frisbeeGrabberClose = 1100
 grabberClosed = 150
 grabberClearClosed = 575
 grabberOpenInit = 750
-grabberMidClosed = 1000
+grabberMidClosed = 950 #was 1000
 grabberOpen = 1600
 
 

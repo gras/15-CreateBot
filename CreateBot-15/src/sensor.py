@@ -34,6 +34,7 @@ def lookForGreen() :
         print "green"
         print link.get_object_area( c.chanGreen, 0 )  
         return True
+    print "green not seen"
     return False
 
 def testETScanner():

@@ -31,11 +31,12 @@ def init():
     link.create_full()
     link.camera_open() 
     # preset move positions
+    move.initMoves()
+    
     if c.isPrime:
         print "Running Prime"
     else:
         print "Running Clone"
-    move.initMoves()
         
     #################################
     # link.enable_servos()          #    TEST
@@ -80,7 +81,7 @@ def turnToMesa():
     print "turnToMesa"
     
     if c.isPrime:
-        drive.withStop( -300, 300, 0.600 ) #was -250, 250, 0.550 #correct code
+        drive.withStop( -250, 250, 0.7550 ) #was -250, 250, 0.550 #correct code
     else:
         drive.withStop( -250, 250, 0.755 ) #was 0.750
     move.grabberArmDown()
@@ -124,8 +125,9 @@ def grabBot():
 def driveAndReset():
     print "driveAndReset"
     drive.withStop( 100, 100, 3.450 ) #was 102,100
+    move.cubeHolderArmUp(20)
+    t.sleep(1.00)
     drive.withStop( -100, -100, 0.250 )
-    move.cubeHolderArmUp()
     drive.withStop( -250, -250, 2.00)# was -100,-100,6.4
     
 
@@ -161,21 +163,21 @@ def checkColorAndDrive():
     print check
     return check    
         
-def backAwayFromBin():
-    print "back Away From Bin"
+def liftGrabberArmForPod():
     link.enable_servo(c.grabberArm) 
     move.grabberArmMid()
-    move.cubeHolderArmMid()
+    
+def backAwayFromBin():
+    print "back Away From Bin"
+    move.cubeHolderArmMid(20)
+    t.sleep(1.00)
     drive.withStop(-100, -100, 4.00)
-    #t.sleep(15)#wait for lego
     drive.withStop(-100, -100, 1.0)
-    #t.sleep(5.00)#wait for lego
     
     # ends at south wall
 def dumpPod():
     print "dump pod"
     drive.withStop(-50, 50, 4.00)
-    #move.cubeHolderArmParallel()
     if c.isPrime:
         drive.withStop( 100, 100, 4.5 )
     else:    
@@ -184,7 +186,6 @@ def dumpPod():
     move.grabberArmDown(20)
     move.grabberOpen()
     t.sleep (2.000)
-    #move.cubeHolderArmParallel()
     move.grabberArmClear()
 
 def podToFrisbee():
@@ -238,7 +239,7 @@ def deliverFrisbeeToStartBox():
     drive.withStop(300, 0, 1.2)
     move.grabberArmHover()
     drive.withStop(100, 100, 2.)
-    drive.withStop(300, -300, .6)
+    drive.withStop(300, -300, .625)
     drive.noStop(100, 100, 9)
     drive.withStop(300, -300, .6)
     move.frisbeeGrabberOpen()
@@ -246,15 +247,12 @@ def deliverFrisbeeToStartBox():
 def grabFrisbee():
     link.enable_servo(c.grabber)
     link.enable_servo(c.frisbeeGrabber)
-    #move.grabberArmMid()
     t.sleep(1.00)
     move.grabberOpen()
     t.sleep(1.00)
     move.frisbeeGrabberOpen()
     t.sleep(1.00)
     move.grabberArmGrabFrisbee( 40 )
-    
-    #move.grabberArmMid()
     t.sleep(1.00)
     move.grabberMidClose()
     t.sleep(1.00)
@@ -265,9 +263,6 @@ def grabFrisbee():
     move.grabberArmBack(5)
     t.sleep(1.00)
     
-    
-    
-    
 def deliverFrisbeeToNorthEndZone():
     drive.withStop(100, 100, 4.5)
     drive.withStop( 300, -300, 0.600 )
@@ -275,7 +270,6 @@ def deliverFrisbeeToNorthEndZone():
     move.grabberArmDown()
     move.frisbeeGrabberOpen() 
     
-
 def moveToFrisbee():
     #move.cubeHolderArmMesa()
     t.sleep(2)        
@@ -283,24 +277,14 @@ def moveToFrisbee():
     while ( link.analog_et(c.ETport) < 425):
         pass
     print link.analog_et(c.ETport)
-    drive.withStop(0, 0, 0)
-    if isPrime:
-        drive.withStop(25, 50, 0.20)
-        drive.withStop(100, 100, .15)  #was .3
-    else:
-        pass
-        
-    
-    
+    drive.withStop(0, 0, 0)    
     
 def frisbeeToBotgal():
     drive.withStop(200, 100, 4.00)
     move.grabberArmDown()
     move.frisbeeGrabberOpen()
     link.create_disconnect()
-    
-    
-    
+       
 def grabCubes():
     move.cubeHolderArmUp()
     move.grabberArmDrop()
@@ -328,7 +312,7 @@ def kill():
 
 def DEBUG( msg = "DEBUG" ):
     print msg
-    link.create_disconnect()
     link.ao()
+    shutDown()
     exit()
 

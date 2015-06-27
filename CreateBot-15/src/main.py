@@ -16,6 +16,7 @@ def main():
     
     act.driveToMesa() #using ET
     act.turnToMesa()
+    #act.DEBUG("msg")
     act.driveToBlock()
     act.grabBot()
     act.driveAndReset()
@@ -23,6 +24,7 @@ def main():
     act.waitForLego(20)
     check = act.checkColorAndDrive()
     if check :
+        act.liftGrabberArmForPod()
         act.backAwayFromBin()
         act.dumpPod()
         act.podToFrisbee()
