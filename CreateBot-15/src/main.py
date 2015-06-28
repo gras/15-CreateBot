@@ -4,10 +4,7 @@ Created on Mar 17, 2015
 @author: Botball
 '''
 
-
 import actions as act
-
-
 
 
 def main():
@@ -16,7 +13,6 @@ def main():
     
     act.driveToMesa() #using ET
     act.turnToMesa()
-    #act.DEBUG("msg")
     act.driveToBlock()
     act.grabBot()
     act.driveAndReset()
@@ -32,19 +28,17 @@ def main():
         act.backAwayFromBin()
         act.dumpBotgal()
         act.botgalToFrisbee()
+    act.DEBUG("swag")
     act.moveToEastWall()
     act.moveToFrisbee()
     act.grabFrisbee() 
-    act.DEBUG("msg")
     if check:
         act.deliverFrisbeeToStartBox()
     else :
         act.deliverFrisbeeToNorthEndZone()
     
     act.shutDown()
-     
     
 
 if __name__ == "__main__":
     main()
-    #act.grabBot()

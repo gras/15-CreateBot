@@ -6,7 +6,7 @@ Created on Mar 17, 2015
 
 import time as t
 import kovan as link
-#import constants as c
+
 
 def noStop( rightSpeed, leftSpeed, driveTime ):
     # this method does not stop

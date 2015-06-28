@@ -9,8 +9,6 @@ import kovan as link
 #import motor as m
 import constants as c
 import time as t
-#from constants import grabberClosed
-
 
 from sensor import testETScanner
 
@@ -23,8 +21,6 @@ def initMoves():
     testGrabber()
     testFrisbeeGrabber()
     
-
-
 def testCubeHolder():
     print "testing cubeHolder"
     opencubeHolder( 0.2 )
@@ -73,13 +69,11 @@ def testFrisbeeGrabber():
     link.disable_servo(c.frisbeeGrabber)
     
     
-    
 #cubeHolder movements (motor)
 def opencubeHolder( secs ):
     link.motor( c.cubeGrabber, -30 )
     t.sleep( secs );
     link.motor( c.cubeGrabber, 0 )
-    
     
 def closecubeHolder( secs ):
     link.motor( c.cubeGrabber, 30 )
@@ -104,10 +98,10 @@ def grabberClose():
     link.set_servo_position( c.grabber, c.grabberClosed )
 
 def grabberClearClosed():
-    moveGrabber( c.grabberClearClosed )
+    moveGrabber( c.grabberClearClosed, 5 )
     
 def grabberOpenInit():
-    moveGrabber( c.grabberOpenInit )
+    moveGrabber( c.grabberOpenInit, 5 )
 
 def moveGrabber( endPos, speed=10 ):
     now = link.get_servo_position( c.grabber )

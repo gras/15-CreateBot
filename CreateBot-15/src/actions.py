@@ -7,18 +7,11 @@ Created on Mar 17, 2015
 import os
 import sys
 import time as t
-
 import kovan as link
-
 import constants as c
 import movement as move
 import drive
 import sensor as s
-from constants import isPrime
-#from constants import grabberArmMid, grabberArm, grabberArmDown, frisbeeGrabber
-#from movement import frisbeeGrabberOpen
-#from kovan import create_spin_CW
-# from time import sleep
 
 # sets up the cubeHolder and cubeHolderArm
 def init():
@@ -60,7 +53,7 @@ def init():
 def driveToMesa():
     print "driveToMesa"
     move.cubeHolderArmSlightBack()
-    drive.noStop( 100, 100, 2.0 )
+    drive.noStop( 200, 200, 1.0 ) #100,100,2.00
     if c.isPrime:
         drive.withStop( 200, 200, 3.4) #was 3.3
     else:
@@ -107,7 +100,6 @@ def driveToBlock():
 def grabBot():
     print "grabBot"
     move.grabberOpen()#opening grabber
-    #t.sleep( 0.500 )
     
     #using grabberArm as a move
     move.grabberArmUp( 10 )
@@ -118,16 +110,15 @@ def grabBot():
     # using grabberArm as a move
     move.grabberArmDrop()
     link.disable_servo( c.grabberArm)
-    t.sleep(2)
+    t.sleep(1.00)
     
 # sweeps more of the mesa and stops to back up in order to change cubeHolderArm position
 # at west wall facing east
 def driveAndReset():
     print "driveAndReset"
     drive.withStop( 100, 100, 3.450 ) #was 102,100
+    drive.withStop( -100, -100, 0.50 )#was .250
     move.cubeHolderArmUp(20)
-    t.sleep(1.00)
-    drive.withStop( -100, -100, 0.250 )
     drive.withStop( -250, -250, 2.00)# was -100,-100,6.4
     
 
@@ -135,11 +126,10 @@ def driveAndReset():
 def endDrive():
     print "endDrive"
     move.cubeHolderArmMesa()
-    t.sleep( 1.00 )
+    #t.sleep( 1.00 )
     if c.isPrime:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
         move.opencubeHolder( 1 ) # was .7  #dump blocks
-        t.sleep(1.0)
         move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
         move.cubeHolderArmMesa()
@@ -148,7 +138,6 @@ def endDrive():
     else:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
         move.opencubeHolder( 1 ) #dump blocks
-        t.sleep(1.0)
         move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
         move.cubeHolderArmMesa()
@@ -170,22 +159,20 @@ def liftGrabberArmForPod():
 def backAwayFromBin():
     print "back Away From Bin"
     move.cubeHolderArmMid(20)
-    t.sleep(1.00)
-    drive.withStop(-100, -100, 4.00)
-    drive.withStop(-100, -100, 1.0)
+    drive.withStop(-100, -100, 4.250)
     
     # ends at south wall
 def dumpPod():
     print "dump pod"
     drive.withStop(-50, 50, 4.00)
     if c.isPrime:
-        drive.withStop( 100, 100, 4.5 )
+        drive.withStop( 100, 100, 4.25 )
     else:    
         drive.withStop( 100, 100, 4.0)
-    drive.withStop(50, -50, 4.00)
+    drive.withStop(50, -50, 4.00)#was 50, -50, 4.00
     move.grabberArmDown(20)
     move.grabberOpen()
-    t.sleep (2.000)
+    t.sleep (1.000)
     move.grabberArmClear()
 
 def podToFrisbee():
@@ -271,7 +258,6 @@ def deliverFrisbeeToNorthEndZone():
     move.frisbeeGrabberOpen() 
     
 def moveToFrisbee():
-    #move.cubeHolderArmMesa()
     t.sleep(2)        
     drive.noStop(-100, -100, 0)
     while ( link.analog_et(c.ETport) < 425):

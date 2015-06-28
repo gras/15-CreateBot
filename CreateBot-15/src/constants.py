@@ -25,7 +25,7 @@ grabberArmStraightUp = 550
 grabberArmMid = 650 #was 550
 grabberArmGrabFrisbee = 850 #675
 grabberArmDrop = 1000
-grabberArmClear = 1360
+grabberArmClear = 1400
 grabberArmHover = 1500
 grabberArmRelease = 1800
 grabberArmDown = 2000 #was 1750
@@ -43,16 +43,11 @@ cubeHolderArmBackMesa = 0 # 30 before
 frisbeeGrabberOpen = 80
 frisbeeGrabberClose = 1100
 
-
 grabberClosed = 150
 grabberClearClosed = 575
 grabberOpenInit = 750
 grabberMidClosed = 950 #was 1000
 grabberOpen = 1600
-
-
-#motor ports
-grabberArm = 0
 
 #camera constants
 blobSize = 750
@@ -63,13 +58,11 @@ seeRed = 1
 seeGreen = 2
 
 # analog ports
-
 ETport = 2
 stoptime= 0
 
 # digital ports
 clonePort = 15 
-
 
 
 # define clone values here
@@ -88,13 +81,13 @@ if isClone:
     #cubeholderArmSlightUp = 
     
     grabberArmUp = 120
-    grabberArmStraightUp = 550
-    grabberArmMid = 650 #was 550
-    grabberArmBack = 850 
-    grabberArmFrisbee = 1100
-    grabberArmDown = 1840
+    grabberArmBack = 400 
     grabberArmFrisbeeAproach = 485
+    grabberArmStraightUp = 600
+    grabberArmMid = 650 #was 550
+    grabberArmGrabFrisbee = 750
+    grabberArmFrisbee = 1100
+    grabberArmClear = 1400
+    grabberArmDown = 1840
     
-    
-
 #isClone
