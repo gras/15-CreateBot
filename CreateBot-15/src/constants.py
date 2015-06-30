@@ -19,7 +19,7 @@ grabber = 1 #cubeHolder that will grab botgal or pod
 frisbeeGrabber = 2
 cubeHolderArm = 3
 
-grabberArmUp = 200 #was 250
+grabberArmUp = 120 
 grabberArmBack = 375
 grabberArmStraightUp = 550
 grabberArmMid = 650 #was 550
@@ -43,7 +43,7 @@ cubeHolderArmBackMesa = 0 # 30 before
 frisbeeGrabberOpen = 80
 frisbeeGrabberClose = 1100
 
-grabberClosed = 150
+grabberClosed = 300 #150 385
 grabberClearClosed = 575
 grabberOpenInit = 750
 grabberMidClosed = 950 #was 1000

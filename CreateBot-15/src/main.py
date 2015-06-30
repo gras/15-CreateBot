@@ -17,7 +17,8 @@ def main():
     act.grabBot()
     act.driveAndReset()
     act.endDrive()
-    act.waitForLego(20)
+    #act.DEBUG("swag")
+    act.waitForLego(25)
     check = act.checkColorAndDrive()
     if check :
         act.liftGrabberArmForPod()
@@ -28,7 +29,6 @@ def main():
         act.backAwayFromBin()
         act.dumpBotgal()
         act.botgalToFrisbee()
-    act.DEBUG("swag")
     act.moveToEastWall()
     act.moveToFrisbee()
     act.grabFrisbee() 

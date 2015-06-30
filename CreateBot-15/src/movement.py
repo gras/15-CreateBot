@@ -210,7 +210,7 @@ def movegrabberArm( endPos, speed=10):
 
 #frisbeeGrabber movements (servo)
 def frisbeeGrabberOpen():
-    moveFrisbeeGrabber(c.frisbeeGrabberOpen, 10)
+    moveFrisbeeGrabber(c.frisbeeGrabberOpen, 20)
 
 def frisbeeGrabberClose( speed = 100 ):
     moveFrisbeeGrabber(c.frisbeeGrabberClose, speed )

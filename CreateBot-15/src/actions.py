@@ -133,7 +133,7 @@ def endDrive():
         move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
         move.cubeHolderArmMesa()
-        t.sleep( 1.00 )
+        #t.sleep( 1.00 )
         drive.withStop( 100, 100, 5.300 )  #was 100,100
     else:
         drive.withStop( 102, 100, 6.500 ) #was 100,100
@@ -141,7 +141,7 @@ def endDrive():
         move.cubeHolderArmMid()
         drive.withStop( -200, -200, 2.600 ) #was 2.900
         move.cubeHolderArmMesa()
-        t.sleep( 1.00 )
+        #t.sleep( 1.00 )
         drive.withStop( 103, 100, 5.300 )  #was 100,100 
     
     
@@ -153,7 +153,8 @@ def checkColorAndDrive():
     return check    
         
 def liftGrabberArmForPod():
-    link.enable_servo(c.grabberArm) 
+    link.enable_servos()
+    #link.enable_servo(c.grabberArm) 
     move.grabberArmMid()
     
 def backAwayFromBin():
@@ -186,7 +187,7 @@ def podToFrisbee():
         drive.withStop(-200, -200, 6.50)
     move.grabberArmStraightUp()
     drive.withStop(-50, 150, 2.00)
-    drive.withStop(200, 200, 1.80)
+    drive.withStop(200, 200, 1.90)#1.8
         
 def moveToEastWall():
     move.cubeHolderArmParallel()
@@ -225,30 +226,30 @@ def parkInSafePlace():
 def deliverFrisbeeToStartBox():
     drive.withStop(300, 0, 1.2)
     move.grabberArmHover()
-    drive.withStop(100, 100, 2.)
-    drive.withStop(300, -300, .625)
-    drive.noStop(100, 100, 9)
-    drive.withStop(300, -300, .6)
+    drive.withStop(200, 200, 0.85)#100,100,2
+    drive.withStop( 250, -250, 0.755 )#drive.withStop(300, -300, .625)
+    drive.noStop(400, 400, 2.25)#100,100,9
+    drive.withStop( 250, -250, 0.755 )#drive.withStop(300, -300, .6)
     move.frisbeeGrabberOpen()
     
 def grabFrisbee():
     link.enable_servo(c.grabber)
     link.enable_servo(c.frisbeeGrabber)
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.grabberOpen()
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.frisbeeGrabberOpen()
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.grabberArmGrabFrisbee( 40 )
     t.sleep(1.00)
     move.grabberMidClose()
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.frisbeeGrabberClose()
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.grabberSlowOpen()
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.grabberArmBack(5)
-    t.sleep(1.00)
+    #t.sleep(1.00)
     
 def deliverFrisbeeToNorthEndZone():
     drive.withStop(100, 100, 4.5)
@@ -258,7 +259,7 @@ def deliverFrisbeeToNorthEndZone():
     move.frisbeeGrabberOpen() 
     
 def moveToFrisbee():
-    t.sleep(2)        
+    #t.sleep(2)        
     drive.noStop(-100, -100, 0)
     while ( link.analog_et(c.ETport) < 425):
         pass
