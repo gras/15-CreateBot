@@ -146,11 +146,11 @@ def endDrive():
     
     
     # depends on which sub method was run
-def checkColorAndDrive():
-    print "checkColorAndDrive"
-    check = s.lookForGreen()
-    print check
-    return check    
+def checkColor():
+    print "checkColor"
+    green = s.lookForGreen()
+    print green
+    return green    
         
 def liftGrabberArmForPod():
     link.enable_servos()
@@ -160,11 +160,12 @@ def liftGrabberArmForPod():
 def backAwayFromBin():
     print "back Away From Bin"
     move.cubeHolderArmMid(20)
-    drive.withStop(-100, -100, 4.250)
+    drive.withStop(-100, -100, 3.250)
     
     # ends at south wall
 def dumpPod():
     print "dump pod"
+    drive.withStop(-100, -100, 1.)
     drive.withStop(-50, 50, 4.00)
     if c.isPrime:
         drive.withStop( 100, 100, 4.25 )
@@ -198,10 +199,10 @@ def moveToEastWall():
     # goes to north wall
 def dumpBotgal():
     print "dump botgal"
-    drive.withStop(100, 100, 1.0)
+    #drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
     move.cubeHolderArmParallel()
-    drive.withStop(-200, -200, 4.5)#was 4.0
+    drive.withStop(-400, -400, 2.10)#was 4.0
     drive.withStop(-100, 100, 1.75)#1.5
     drive.noStop(0,0,0)
     move.grabberOpen()
@@ -212,8 +213,8 @@ def botgalToFrisbee():
     print("botgaltofrisbee")
     link.enable_servo(c.grabberArm)
     move.grabberArmStraightUp()
-    drive.withStop(200, 200, 2)
-    t.sleep(10.00)
+    drive.withStop(200, 200, 2.4)
+    #t.sleep(27.00)
     
 def parkInSafePlace():
     print "i see nothing,"
@@ -243,18 +244,18 @@ def grabFrisbee():
     move.grabberArmGrabFrisbee( 40 )
     t.sleep(1.00)
     move.grabberMidClose()
-    #t.sleep(1.00)
+    t.sleep(1.00)
     move.frisbeeGrabberClose()
-    #t.sleep(1.00)
+    t.sleep(1.00)
     move.grabberSlowOpen()
     #t.sleep(1.00)
     move.grabberArmBack(5)
     #t.sleep(1.00)
     
 def deliverFrisbeeToNorthEndZone():
-    drive.withStop(100, 100, 4.5)
-    drive.withStop( 300, -300, 0.600 )
-    drive.withStop(100, 100, 2)
+    drive.withStop(200, 200, 2.00)
+    drive.withStop( 250, -250, 0.755 )
+    drive.withStop(200, 200, 1.8)
     move.grabberArmDown()
     move.frisbeeGrabberOpen() 
     

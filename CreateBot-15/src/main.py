@@ -18,25 +18,27 @@ def main():
     act.driveAndReset()
     act.endDrive()
     #act.DEBUG("swag")
-    act.waitForLego(25)
-    check = act.checkColorAndDrive()
-    if check :
+    green = act.checkColor()
+    if green :
+        act.waitForLego(25)
         act.liftGrabberArmForPod()
         act.backAwayFromBin()
         act.dumpPod()
         act.podToFrisbee()
     else :
+        act.waitForLego(15)
         act.backAwayFromBin()
         act.dumpBotgal()
         act.botgalToFrisbee()
     act.moveToEastWall()
     act.moveToFrisbee()
     act.grabFrisbee() 
-    if check:
+    act.deliverFrisbeeToNorthEndZone()
+    '''if check:
         act.deliverFrisbeeToStartBox()
     else :
         act.deliverFrisbeeToNorthEndZone()
-    
+    '''
     act.shutDown()
     
 

@@ -46,7 +46,7 @@ frisbeeGrabberClose = 1100
 grabberClosed = 300 #150 385
 grabberClearClosed = 575
 grabberOpenInit = 750
-grabberMidClosed = 950 #was 1000
+grabberMidClosed = 850 #was 950
 grabberOpen = 1600
 
 #camera constants
@@ -79,7 +79,7 @@ if isClone:
     cubeHolderArmMidDown = 200 # for optimization
     cubeHolderArmBackMesa = 150 # 40 before
     #cubeholderArmSlightUp = 
-    
+  
     grabberArmUp = 120
     grabberArmBack = 400 
     grabberArmFrisbeeAproach = 485
@@ -89,5 +89,7 @@ if isClone:
     grabberArmFrisbee = 1100
     grabberArmClear = 1400
     grabberArmDown = 1840
+    
+    grabberMidClosed = 950 
     
 #isClone
