@@ -24,6 +24,7 @@ grabberArmBack = 375
 grabberArmStraightUp = 550
 grabberArmMid = 650 #was 550
 grabberArmGrabFrisbee = 850 #675
+grabberArmFinal = 750
 grabberArmDrop = 1000
 grabberArmClear = 1400
 grabberArmHover = 1500

@@ -20,13 +20,14 @@ def main():
     #act.DEBUG("swag")
     green = act.checkColor()
     if green :
-        act.waitForLego(25)
-        act.liftGrabberArmForPod()
+        #act.waitForLego(25)
         act.backAwayFromBin()
         act.dumpPod()
         act.podToFrisbee()
+        act.DEBUG("msg")
+        
     else :
-        act.waitForLego(15)
+        act.waitForLego(17)
         act.backAwayFromBin()
         act.dumpBotgal()
         act.botgalToFrisbee()

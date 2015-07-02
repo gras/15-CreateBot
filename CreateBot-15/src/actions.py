@@ -151,19 +151,17 @@ def checkColor():
     green = s.lookForGreen()
     print green
     return green    
-        
-def liftGrabberArmForPod():
-    link.enable_servos()
-    #link.enable_servo(c.grabberArm) 
-    move.grabberArmMid()
-    
+            
 def backAwayFromBin():
     print "back Away From Bin"
+    link.set_servo_position(c.grabberArm, c.grabberArmRelease)
+    link.enable_servo(c.grabberArm) 
     move.cubeHolderArmMid(20)
     drive.withStop(-100, -100, 3.250)
     
+    
     # ends at south wall
-def dumpPod():
+'''def dumpPod():
     print "dump pod"
     drive.withStop(-100, -100, 1.)
     drive.withStop(-50, 50, 4.00)
@@ -175,9 +173,19 @@ def dumpPod():
     move.grabberArmDown(20)
     move.grabberOpen()
     t.sleep (1.000)
-    move.grabberArmClear()
+    move.grabberArmClear()'''
+    
+def dumpPod():
+    print "dump pod"
+    move.grabberArmDown(20)
+    move.grabberOpen()
+    t.sleep (1.000)
+    move.grabberArmRelease()
+    drive.withStop(-100, 100, 2.20)
+    
+    
 
-def podToFrisbee():
+'''def podToFrisbee():
     drive.withStop(-50, 150, 2.00)
     t.sleep( 0.50 )
     move.cubeHolderArmParallel()
@@ -188,7 +196,21 @@ def podToFrisbee():
         drive.withStop(-200, -200, 6.50)
     move.grabberArmStraightUp()
     drive.withStop(-50, 150, 2.00)
-    drive.withStop(200, 200, 1.90)#1.8
+    drive.withStop(200, 200, 1.90)#1.8'''
+    
+def podToFrisbee():
+    move.cubeHolderArmParallel()
+    move.grabberArmRelease()
+    if c.isPrime:
+        drive.withStop(-200, -200, 4.25 )
+    else:
+        drive.withStop(-200, -200, 4.00)
+    move.grabberArmStraightUp()
+    move.cubeHolderArmUp(10)
+    drive.withStop(-50, 150, 1.90)
+    t.sleep(3.00)
+    
+    #drive.withStop(200, 200, 1.90)#1.8
         
 def moveToEastWall():
     move.cubeHolderArmParallel()
@@ -242,6 +264,8 @@ def grabFrisbee():
     move.frisbeeGrabberOpen()
     #t.sleep(1.00)
     move.grabberArmGrabFrisbee( 40 )
+    t.sleep(1.00)
+    move.grabberArmFinal(10)
     t.sleep(1.00)
     move.grabberMidClose()
     t.sleep(1.00)

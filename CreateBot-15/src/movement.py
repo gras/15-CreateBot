@@ -193,6 +193,9 @@ def grabberArmFrisbeeAproach():
     
 def grabberArmGrabFrisbee( speed ):
     movegrabberArm( c.grabberArmGrabFrisbee, speed )
+    
+def grabberArmFinal( speed ):
+    movegrabberArm( c.grabberArmFinal, speed )
 
 def movegrabberArm( endPos, speed=10):
     now = link.get_servo_position( c.grabberArm )
