@@ -88,7 +88,7 @@ if isClone:
     grabberArmMid = 650 #was 550
     grabberArmGrabFrisbee = 750
     grabberArmFrisbee = 1100
-    grabberArmClear = 1400
+    grabberArmClear = 1350
     grabberArmDown = 1840
     
     grabberMidClosed = 950 

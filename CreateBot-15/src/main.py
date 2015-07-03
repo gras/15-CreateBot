@@ -30,15 +30,16 @@ def main():
         act.backAwayFromBin()
         act.dumpBotgal()
         act.botgalToFrisbee()
+    #act.DEBUG("msg")  
     act.moveToEastWall()#MIDDLE WALL
     act.moveToFrisbee()
     act.grabFrisbee() 
-    act.deliverFrisbeeToNorthEndZone()
-    '''if check:
+    #act.deliverFrisbeeToNorthEndZone()
+    if green:
         act.deliverFrisbeeToStartBox()
     else :
         act.deliverFrisbeeToNorthEndZone()
-    '''
+    
     act.shutDown()
     
 

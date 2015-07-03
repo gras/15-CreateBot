@@ -157,7 +157,7 @@ def backAwayFromBin():
     link.set_servo_position(c.grabberArm, c.grabberArmRelease)
     link.enable_servo(c.grabberArm) 
     move.cubeHolderArmMid(20)
-    drive.withStop(-100, -100, 3.250)
+    drive.withStop(-200, -200, 1.625)#3.25
     
     
     # ends at south wall
@@ -180,8 +180,8 @@ def dumpPod():
     move.grabberArmDown(20)
     move.grabberOpen()
     t.sleep (.50)
-    move.grabberArmRelease()
-    drive.withStop( -250, 250, 0.70 )
+    move.grabberArmRelease(15)
+    drive.withStop( -250, 250, 0.75 )
     
     
 
@@ -200,9 +200,9 @@ def dumpPod():
     
 def podToFrisbee():
     move.cubeHolderArmParallel()
-    move.grabberArmRelease()
+    move.grabberArmRelease(15)
     if c.isPrime:
-        drive.withStop(-400, -400, 1.750 )#200,200,3.5
+        drive.withStop(-400, -400, 1.70 )#200,200,3.5
     else:
         drive.withStop(-400, -400, 1.625 ) #200,200,3.25
     move.grabberArmStraightUp()
@@ -211,7 +211,7 @@ def podToFrisbee():
     drive.withStop( -250, 250, 0.80 ) #was 0.65
     drive.withStop(-200, -200, 0.50)
     move.cubeHolderArmMesa()
-    t.sleep(9.00)
+    t.sleep(8.50)#9.00
     #square up on outside wall
     drive.withStop(200, 200, 2.90)#1.8
     
@@ -226,19 +226,19 @@ def moveToEastWall():
 def dumpBotgal():
     print "dump botgal"
     #drive.withStop(100, 100, 1.0)
-    drive.withStop(-50, 50, 4.00)
+    drive.withStop(-250, 250, 0.75)
     move.cubeHolderArmParallel()
-    drive.withStop(-400, -400, 1.50)#was 4.0
+    drive.withStop(-400, -400, 1.25)#was 4.0
     drive.withStop(250, -250, .70)
     drive.withStop(200, 200, .5)
-    t.sleep(8.00)
+    t.sleep(10.25)
     drive.withStop(-200, -200, .5)
-    drive.withStop(-250, 250, .70)
-    DEBUG("msg")  
-    drive.withStop(-100, 100, 1.75)#1.5
-    drive.noStop(0,0,0)
-    move.grabberOpen()
-    t.sleep (1.000)
+    drive.withStop(-250, 250, .65)
+    drive.withStop(-100,-100, 1.50)
+    #drive.withStop(-250, 250, .70)
+    drive.withStop(-200, 200, 1.125)#1.75
+    #drive.noStop(0,0,0)
+    
     
 '''def dumpBotgal():
     print "dump botgal"
@@ -257,8 +257,11 @@ def dumpBotgal():
 def botgalToFrisbee():
     print("botgaltofrisbee")
     link.enable_servo(c.grabberArm)
-    move.grabberArmStraightUp()
+    move.cubeHolderArmMesa()
     drive.withStop(200, 200, 2.4)
+    move.grabberOpen()
+    t.sleep (1.000)
+    move.grabberArmStraightUp()
     #t.sleep(27.00)
     
 def parkInSafePlace():
@@ -274,16 +277,18 @@ def deliverFrisbeeToStartBox():
     move.grabberArmHover()
     drive.withStop(200, 200, 0.85)#100,100,2
     drive.withStop( 250, -250, 0.755 )#drive.withStop(300, -300, .625)
-    drive.noStop(400, 400, 2.25)#100,100,9
-    drive.withStop( 250, -250, 0.755 )#drive.withStop(300, -300, .6)
+    drive.withStop(400, 400, 1.5)#100,100,9
+    move.cubeHolderArmMesa()
+    t.sleep(10.00)
+    drive.withStop(200, 200, 1.00)
+    drive.withStop( 100, -100, 2.00 )#drive.withStop(300, -300, .6)
+    t.sleep(1.00)
     move.frisbeeGrabberOpen()
     
 def grabFrisbee():
     link.enable_servo(c.grabber)
     link.enable_servo(c.frisbeeGrabber)
-    #t.sleep(1.00)
     move.grabberOpen()
-    #t.sleep(1.00)
     move.frisbeeGrabberOpen()
     #t.sleep(1.00)
     move.grabberArmGrabFrisbee( 40 )
@@ -291,13 +296,12 @@ def grabFrisbee():
     move.grabberArmFinal(10)
     t.sleep(1.00)
     move.grabberMidClose()
-    t.sleep(1.00)
+    #t.sleep(1.00)
     move.frisbeeGrabberClose()
     t.sleep(1.00)
     move.grabberSlowOpen()
-    #t.sleep(1.00)
     move.grabberArmBack(5)
-    #t.sleep(1.00)
+    
     
 def deliverFrisbeeToNorthEndZone():
     drive.withStop(200, 200, 2.00)

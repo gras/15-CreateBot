@@ -185,8 +185,8 @@ def grabberArmFribee():
 def grabberArmDrop():
     movegrabberArm( c.grabberArmDrop, 10 )
     
-def grabberArmRelease():
-    movegrabberArm( c.grabberArmRelease, 5 )
+def grabberArmRelease(speed= 5):
+    movegrabberArm( c.grabberArmRelease, speed )
     
 def grabberArmFrisbeeAproach():
     movegrabberArm( c.grabberArmFrisbeeAproach, 10 )
