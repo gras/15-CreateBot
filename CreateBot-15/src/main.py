@@ -24,14 +24,13 @@ def main():
         act.backAwayFromBin()
         act.dumpPod()
         act.podToFrisbee()
-        act.DEBUG("msg")
         
     else :
-        act.waitForLego(17)
+        #act.waitForLego(17)
         act.backAwayFromBin()
         act.dumpBotgal()
         act.botgalToFrisbee()
-    act.moveToEastWall()
+    act.moveToEastWall()#MIDDLE WALL
     act.moveToFrisbee()
     act.grabFrisbee() 
     act.deliverFrisbeeToNorthEndZone()

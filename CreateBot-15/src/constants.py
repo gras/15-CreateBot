@@ -33,7 +33,7 @@ grabberArmDown = 2000 #was 1750
 
 cubeHolderArmCompleteDown = 2000
 cubeHolderArmDown = 1900 #was 1800
-cubeHolderArmParallel= 1400
+cubeHolderArmParallel= 1700 #was 1400
 cubeHolderArmMesa = 1100 #was 1150
 cubeHolderArmMid = 850
 cubeHolderArmUp = 510

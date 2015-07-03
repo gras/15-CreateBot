@@ -74,7 +74,7 @@ def turnToMesa():
     print "turnToMesa"
     
     if c.isPrime:
-        drive.withStop( -250, 250, 0.7550 ) #was -250, 250, 0.550 #correct code
+        drive.withStop( -250, 250, 0.73 ) #was -250, 250, 0.7550 #correct code
     else:
         drive.withStop( -250, 250, 0.755 ) #was 0.750
     move.grabberArmDown()
@@ -179,9 +179,9 @@ def dumpPod():
     print "dump pod"
     move.grabberArmDown(20)
     move.grabberOpen()
-    t.sleep (1.000)
+    t.sleep (.50)
     move.grabberArmRelease()
-    drive.withStop(-100, 100, 2.20)
+    drive.withStop( -250, 250, 0.70 )
     
     
 
@@ -202,19 +202,23 @@ def podToFrisbee():
     move.cubeHolderArmParallel()
     move.grabberArmRelease()
     if c.isPrime:
-        drive.withStop(-200, -200, 4.25 )
+        drive.withStop(-400, -400, 1.750 )#200,200,3.5
     else:
-        drive.withStop(-200, -200, 4.00)
+        drive.withStop(-400, -400, 1.625 ) #200,200,3.25
     move.grabberArmStraightUp()
-    move.cubeHolderArmUp(10)
-    drive.withStop(-50, 150, 1.90)
-    t.sleep(3.00)
+    #move.cubeHolderArmUp(10)
+    #drive.withStop(-200, -200, 0.55)
+    drive.withStop( -250, 250, 0.80 ) #was 0.65
+    drive.withStop(-200, -200, 0.50)
+    move.cubeHolderArmMesa()
+    t.sleep(9.00)
+    #square up on outside wall
+    drive.withStop(200, 200, 2.90)#1.8
     
-    #drive.withStop(200, 200, 1.90)#1.8
-        
+    #MOVING TO MIDDLE WALL    
 def moveToEastWall():
-    move.cubeHolderArmParallel()
     drive.withStop(-200, -200, 3.5)
+    move.cubeHolderArmParallel()
     drive.withStop( -250, 250, 0.70 ) #was 0.65
     
    
@@ -224,11 +228,30 @@ def dumpBotgal():
     #drive.withStop(100, 100, 1.0)
     drive.withStop(-50, 50, 4.00)
     move.cubeHolderArmParallel()
-    drive.withStop(-400, -400, 2.10)#was 4.0
+    drive.withStop(-400, -400, 1.50)#was 4.0
+    drive.withStop(250, -250, .70)
+    drive.withStop(200, 200, .5)
+    t.sleep(8.00)
+    drive.withStop(-200, -200, .5)
+    drive.withStop(-250, 250, .70)
+    DEBUG("msg")  
     drive.withStop(-100, 100, 1.75)#1.5
     drive.noStop(0,0,0)
     move.grabberOpen()
     t.sleep (1.000)
+    
+'''def dumpBotgal():
+    print "dump botgal"
+    #drive.withStop(100, 100, 1.0)
+    drive.withStop(-50, 50, 4.00)
+    move.cubeHolderArmParallel()
+    drive.withStop(-400, -400, 1.70)#was 4.0
+    DEBUG("msg")  
+    drive.withStop(-100, 100, 1.75)#1.5
+    drive.noStop(0,0,0)
+    move.grabberOpen()
+    t.sleep (1.000)
+   ''' 
     
     
 def botgalToFrisbee():
